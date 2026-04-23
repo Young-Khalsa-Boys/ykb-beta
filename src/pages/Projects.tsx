@@ -1,15 +1,15 @@
-import { MapPin, Users } from 'lucide-react';
+// import { MapPin, Users } from 'lucide-react';
 
-const projectsList = [
-  // {
-  //   id: 1,
-  //   title: "Sample Project Title",
-  //   location: "Sample Project Location",
-  //   helped: "x People Helped",
-  //   blurb: "Sample Project Description/Impact",
-  //   placeholderImageId: 1
-  // },
-];
+// const projectsList = [
+//   {
+//     id: 1,
+//     title: "Sample Project Title",
+//     location: "Sample Project Location",
+//     helped: "x People Helped",
+//     blurb: "Sample Project Description/Impact",
+//     placeholderImageId: 1
+//   },
+// ];
 
 export default function Projects() {
   return (

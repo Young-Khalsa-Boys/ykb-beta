@@ -1,7 +1,7 @@
-const membersList = [
-  // { id: 1, name: "Sample Name", role: "Sample Subtext" },
-  // { id: 2, name: "Sample Name 2" },
-];
+// const membersList = [
+//   { id: 1, name: "Sample Name", role: "Sample Subtext" },
+//   { id: 2, name: "Sample Name 2" },
+// ];
 
 export default function Members() {
   return (

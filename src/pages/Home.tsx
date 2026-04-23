@@ -6,7 +6,8 @@ import { useEffect } from 'react';
 
 // For the carousel
 const carouselPhotos = [
-  "/",
+  "",
+  "",
 ];
 
 export default function Home() {

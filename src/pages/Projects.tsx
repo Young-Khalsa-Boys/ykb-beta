@@ -1,14 +1,14 @@
 import { MapPin, Users } from 'lucide-react';
 
 const projectsList = [
-  {
-    id: 1,
-    title: "Sample Project Title",
-    location: "Sample Project Location",
-    helped: "x People Helped",
-    blurb: "Sample Project Description/Impact",
-    placeholderImageId: 1
-  },
+  // {
+  //   id: 1,
+  //   title: "Sample Project Title",
+  //   location: "Sample Project Location",
+  //   helped: "x People Helped",
+  //   blurb: "Sample Project Description/Impact",
+  //   placeholderImageId: 1
+  // },
 ];
 
 export default function Projects() {
@@ -22,6 +22,8 @@ export default function Projects() {
           We believe in putting our faith into practice. Explore some of our recent community service initiatives where our members took the lead in making a tangible difference.
         </p>
       </div>
+
+      COMING SOON!!!
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
         {projectsList.map((project, index) => (

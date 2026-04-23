@@ -6,10 +6,10 @@ import { useEffect } from 'react';
 
 // For the carousel
 const carouselPhotos = [
-  "https://images.unsplash.com/photo-1593113511342-f87fdbbe7e8e?auto=format&fit=crop&q=80&w=1200",
-  "https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?auto=format&fit=crop&q=80&w=1200",
-  "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=1200",
-  "https://images.unsplash.com/photo-1529156069898-49953eb1f55f?auto=format&fit=crop&q=80&w=1200"
+  // "https://images.unsplash.com/photo-1593113511342-f87fdbbe7e8e?auto=format&fit=crop&q=80&w=1200",
+  // "https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?auto=format&fit=crop&q=80&w=1200",
+  // "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=1200",
+  // "https://images.unsplash.com/photo-1529156069898-49953eb1f55f?auto=format&fit=crop&q=80&w=1200"
 ];
 
 export default function Home() {
@@ -30,7 +30,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-[80vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
         {/* Background Image */}
-        <div 
+        <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 hover:scale-105"
           style={{ backgroundImage: `url(${heroBg})` }}
         >
@@ -41,9 +41,9 @@ export default function Home() {
 
         {/* Hero Content */}
         <div className="relative z-10 flex flex-col items-center justify-center text-center px-4">
-          <img 
-            src="/logo.png" 
-            alt="Young Khalsa Boys Logo" 
+          <img
+            src="/logo.png"
+            alt="Young Khalsa Boys Logo"
             className="w-48 h-48 md:w-64 md:h-64 object-contain mb-8 drop-shadow-2xl"
           />
           <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight drop-shadow-lg mb-4">
@@ -92,10 +92,10 @@ export default function Home() {
             </Link>
           </div>
           <div className="col-span-1 rounded-xl bg-[var(--ykb-orange)] overflow-hidden shadow-sm shadow-orange-500/20 hover:shadow-lg transition-all hover:-translate-y-1 group">
-            <a 
-              href="https://givebutter.com/young-khalsa-boys-fundraiser-bq2wmc" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://givebutter.com/young-khalsa-boys-fundraiser-bq2wmc"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center p-6 h-full text-white"
             >
               <span className="font-bold text-xl uppercase tracking-wider">Donate</span>
@@ -111,9 +111,9 @@ export default function Home() {
           Empowering Sikh boys through boy-led community service initiatives and mentorship.
         </h3>
         <p className="text-lg text-slate-600 leading-relaxed font-medium">
-          Rooted in the Sikh principles of selfless service, we cultivate leadership, loyalty, 
-          integrity, empathy, courage, advocacy, humility, seva (service) and an unwavering 
-          commitment to community, while fostering lasting bonds of brotherhood and expanding 
+          Rooted in the Sikh principles of selfless service, we cultivate leadership, loyalty,
+          integrity, empathy, courage, advocacy, humility, seva (service) and an unwavering
+          commitment to community, while fostering lasting bonds of brotherhood and expanding
           personal networks to strengthen the Sikh community.
         </p>
       </section>
@@ -125,15 +125,15 @@ export default function Home() {
             <h2 className="text-[var(--ykb-orange)] text-sm font-bold uppercase tracking-widest mb-2">Moments in Action</h2>
             <h3 className="text-3xl font-bold text-white">Our Seva Journey</h3>
           </div>
-          
+
           <div className="relative overflow-hidden group rounded-2xl cursor-grab active:cursor-grabbing shadow-2xl" ref={emblaRef}>
             <div className="flex backface-hidden">
               {carouselPhotos.map((photo, index) => (
                 <div key={index} className="flex-[0_0_100%] min-w-0 md:flex-[0_0_70%] lg:flex-[0_0_60%] px-2">
                   <div className="relative aspect-[16/9] overflow-hidden rounded-xl bg-slate-800">
-                    <img 
-                      src={photo} 
-                      alt={`YKB Gallery ${index + 1}`} 
+                    <img
+                      src={photo}
+                      alt={`YKB Gallery ${index + 1}`}
                       className="absolute inset-0 w-full h-full object-cover rounded-xl transition-transform duration-700 hover:scale-105"
                       loading="lazy"
                     />
@@ -141,7 +141,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            
+
             {/* Absolute gradients for smooth edges on desktop */}
             <div className="hidden md:block absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-slate-900 to-transparent pointer-events-none" />
             <div className="hidden md:block absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-slate-900 to-transparent pointer-events-none" />

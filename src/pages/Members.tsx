@@ -1,6 +1,6 @@
 const membersList = [
-  { id: 1, name: "Sample Name", role: "Sample Subtext" },
-  { id: 2, name: "Sample Name 2" },
+  // { id: 1, name: "Sample Name", role: "Sample Subtext" },
+  // { id: 2, name: "Sample Name 2" },
 ];
 
 export default function Members() {
@@ -13,6 +13,8 @@ export default function Members() {
           Meet the dedicated young men who make our Seva possible. A brotherhood committed to community service.
         </p>
       </div>
+
+      COMING SOON!!!
 
       {/* Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

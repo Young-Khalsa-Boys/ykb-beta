@@ -56,7 +56,7 @@ export default function Home() {
       </section>
 
       {/* Rigid Action Buttons */}
-      <section className="relative z-20 -mt-8 md:-mt-12 max-w-6xl mx-auto px-4 z-20">
+      <section className="relative z-20 -mt-8 md:-mt-12 max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 shadow-xl rounded-2xl bg-white/50 backdrop-blur-xl p-4 md:p-2 border border-white/40">
           <div className="col-span-1 rounded-xl bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
             <Link to="/about" className="flex items-center justify-between p-6 h-full text-slate-800 hover:text-[var(--ykb-blue)] transition-colors">
@@ -92,9 +92,14 @@ export default function Home() {
             </Link>
           </div>
           <div className="col-span-1 rounded-xl bg-[var(--ykb-orange)] overflow-hidden shadow-sm shadow-orange-500/20 hover:shadow-lg transition-all hover:-translate-y-1 group">
-            <Link to="/donate" className="flex items-center justify-center p-6 h-full text-white">
+            <a 
+              href="https://givebutter.com/young-khalsa-boys-fundraiser-bq2wmc" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center justify-center p-6 h-full text-white"
+            >
               <span className="font-bold text-xl uppercase tracking-wider">Donate</span>
-            </Link>
+            </a>
           </div>
         </div>
       </section>

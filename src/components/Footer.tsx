@@ -28,13 +28,15 @@ export function Footer() {
           
           <div className="flex flex-col items-center md:items-end">
             <h3 className="font-semibold text-white mb-4">Support Our Seva</h3>
-            <Link 
-              to="/donate" 
+            <a 
+              href="https://givebutter.com/young-khalsa-boys-fundraiser-bq2wmc" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-6 py-2 bg-[var(--ykb-orange)] hover:bg-orange-600 text-white font-medium rounded-full transition-colors mb-3"
             >
               Donate Now
-            </Link>
-            <span className="text-xs text-slate-400 bg-slate-800 px-3 py-1 rounded-full">
+            </a>
+            <span className="text-xs text-slate-400 bg-slate-800 px-3 py-1 rounded-full text-center">
               501(c)(3) Nonprofit Organization
             </span>
           </div>

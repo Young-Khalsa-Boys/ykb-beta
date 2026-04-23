@@ -5,7 +5,6 @@ const navLinks = [
   { name: 'About', path: '/about' },
   { name: 'Members', path: '/members' },
   { name: 'Projects', path: '/projects' },
-  { name: 'Donate', path: '/donate' },
 ];
 
 export function Navigation() {
@@ -28,7 +27,7 @@ export function Navigation() {
           </Link>
 
           {/* Navigation Links */}
-          <nav className="hidden md:flex space-x-1">
+          <nav className="hidden md:flex items-center space-x-1">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
@@ -46,16 +45,28 @@ export function Navigation() {
                 </Link>
               );
             })}
+            
+            {/* External Donate Link */}
+            <a
+              href="https://givebutter.com/young-khalsa-boys-fundraiser-bq2wmc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 text-[var(--ykb-orange)] hover:bg-[var(--ykb-orange)] hover:text-white ml-2 flex items-center justify-center border border-[var(--ykb-orange)] hover:border-transparent group"
+            >
+              Donate
+            </a>
           </nav>
           
           {/* Mobile Donate Button */}
-          <div className="md:hidden">
-            <Link 
-              to="/donate"
+          <div className="md:hidden flex items-center">
+            <a 
+              href="https://givebutter.com/young-khalsa-boys-fundraiser-bq2wmc"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-4 py-2 bg-[var(--ykb-orange)] text-white rounded-full text-sm font-medium shadow-sm active:scale-95 transition-transform"
             >
               Donate
-            </Link>
+            </a>
           </div>
         </div>
       </div>

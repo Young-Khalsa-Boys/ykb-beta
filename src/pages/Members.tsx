@@ -1,12 +1,6 @@
 const membersList = [
-  { id: 1, name: "John Doe", role: "President" },
-  { id: 2, name: "Arjun Singh", role: "Vice President" },
-  { id: 3, name: "Baldev Kumar", role: "Treasurer" },
-  { id: 4, name: "Simranjit Singh", role: "Secretary" },
-  { id: 5, name: "Gurbani Das", role: "Community Lead" },
-  { id: 6, name: "Ranjit Singh", role: "Member" },
-  { id: 7, name: "Paramjit Singh", role: "Member" },
-  { id: 8, name: "Navdeep Singh", role: "Member" }
+  { id: 1, name: "Sample Name", role: "Sample Subtext" },
+  { id: 2, name: "Sample Name 2" },
 ];
 
 export default function Members() {
@@ -24,8 +18,8 @@ export default function Members() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {membersList.map((member) => (
-            <div 
-              key={member.id} 
+            <div
+              key={member.id}
               className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group border border-slate-100 group-hover:-translate-y-1"
             >
               {/* Headshot wireframe container */}
@@ -38,7 +32,7 @@ export default function Members() {
                   <span className="text-xs font-medium uppercase tracking-widest">Headshot</span>
                 </div>
               </div>
-              
+
               {/* Content */}
               <div className="p-6 text-center">
                 <h3 className="text-xl font-bold text-slate-900 mb-1">{member.name}</h3>

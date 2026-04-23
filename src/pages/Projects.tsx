@@ -3,28 +3,12 @@ import { MapPin, Users } from 'lucide-react';
 const projectsList = [
   {
     id: 1,
-    title: "Community Kitchen (Langar) Reboot",
-    location: "Sikh Gurdwara, Paramus NJ",
-    helped: "500+ Local Residents",
-    blurb: "Our members organized and executed a massive clean-up and restructuring of the local Gurdwara's community kitchen. We implemented new hygiene stations and improved the flow of the Langar line, ensuring safe and efficient food distribution for all visitors, regardless of background.",
+    title: "Sample Project Title",
+    location: "Sample Project Location",
+    helped: "x People Helped",
+    blurb: "Sample Project Description/Impact",
     placeholderImageId: 1
   },
-  {
-    id: 2,
-    title: "Park Restoration and Clean-up",
-    location: "Thielke Arboretum, Glen Rock NJ",
-    helped: "Local Environment & Community",
-    blurb: "Dedicating a full weekend, the YKB team removed over 200 pounds of litter and invasive plant species from the local arboretum. We also planted indigenous flora to help restore the natural habitat and make the park a more hospitable environment for local wildlife and families.",
-    placeholderImageId: 2
-  },
-  {
-    id: 3,
-    title: "Winter Clothing Drive",
-    location: "Bergen County Shelters",
-    helped: "150+ Homeless Individuals",
-    blurb: "As winter approached, our members led a multi-week clothing drive, collecting coats, gloves, and blankets. We sorted, cleaned, and personally distributed these essential items to multiple shelters across Bergen County, embodying the Sikh principle of Vand Chhako (sharing with others).",
-    placeholderImageId: 3
-  }
 ];
 
 export default function Projects() {
@@ -41,8 +25,8 @@ export default function Projects() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
         {projectsList.map((project, index) => (
-          <div 
-            key={project.id} 
+          <div
+            key={project.id}
             className={`flex flex-col md:flex-row gap-12 items-center ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
           >
             {/* Image Placeholder */}
@@ -61,7 +45,7 @@ export default function Projects() {
             {/* Project Details */}
             <div className="w-full md:w-1/2 space-y-6">
               <h3 className="text-3xl font-bold text-slate-900">{project.title}</h3>
-              
+
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3 text-slate-600 bg-slate-50 px-4 py-2 rounded-lg w-fit border border-slate-100">
                   <MapPin className="w-5 h-5 text-[var(--ykb-orange)]" />

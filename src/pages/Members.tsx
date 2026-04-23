@@ -17,14 +17,14 @@ export default function Members() {
       COMING SOON!!!
 
       {/* Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {membersList.map((member) => (
             <div
               key={member.id}
               className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group border border-slate-100 group-hover:-translate-y-1"
             >
-              {/* Headshot wireframe container */}
+              {/* Headshot wireframe container *}
               <div className="aspect-[4/5] bg-slate-200 relative overflow-hidden">
                 <div className="absolute inset-0 bg-[var(--ykb-green)]/10" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400">
@@ -35,7 +35,7 @@ export default function Members() {
                 </div>
               </div>
 
-              {/* Content */}
+              {/* Content *}
               <div className="p-6 text-center">
                 <h3 className="text-xl font-bold text-slate-900 mb-1">{member.name}</h3>
                 <p className="text-sm font-medium text-[var(--ykb-orange)]">{member.role}</p>
@@ -43,7 +43,7 @@ export default function Members() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

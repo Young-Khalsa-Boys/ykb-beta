@@ -25,13 +25,13 @@ export default function Projects() {
 
       COMING SOON!!!
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+      {/* <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
         {projectsList.map((project, index) => (
           <div
             key={project.id}
             className={`flex flex-col md:flex-row gap-12 items-center ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
           >
-            {/* Image Placeholder */}
+            {/* Image Placeholder *}
             <div className="w-full md:w-1/2">
               <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-slate-100 border border-slate-200 relative shadow-md group">
                 <div className="absolute inset-0 bg-slate-800/5 group-hover:bg-transparent transition-colors z-10" />
@@ -44,7 +44,7 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Project Details */}
+            {/* Project Details *}
             <div className="w-full md:w-1/2 space-y-6">
               <h3 className="text-3xl font-bold text-slate-900">{project.title}</h3>
 
@@ -67,7 +67,7 @@ export default function Projects() {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -6,10 +6,7 @@ import { useEffect } from 'react';
 
 // For the carousel
 const carouselPhotos = [
-  // "https://images.unsplash.com/photo-1593113511342-f87fdbbe7e8e?auto=format&fit=crop&q=80&w=1200",
-  // "https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?auto=format&fit=crop&q=80&w=1200",
-  // "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=1200",
-  // "https://images.unsplash.com/photo-1529156069898-49953eb1f55f?auto=format&fit=crop&q=80&w=1200"
+  "/",
 ];
 
 export default function Home() {

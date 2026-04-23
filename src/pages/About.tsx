@@ -52,31 +52,41 @@ export default function About() {
           </section>
         </div>
 
-        {/* Sikhism Principles */}
+        {/* YKB Pillars */}
         <section className="max-w-4xl mx-auto pb-12">
           <div className="text-center mb-12">
             <h2 className="text-[var(--ykb-blue)] text-sm font-bold uppercase tracking-widest mb-2">Our Foundation</h2>
-            <h3 className="text-3xl font-bold text-slate-900">Principles of Sikhism</h3>
+            <h3 className="text-3xl font-bold text-slate-900">Core Pillars</h3>
           </div>
           <div className="prose prose-lg text-slate-600 max-w-none">
-            <p>
+            <p className="text-center">
               Sikhism, founded in the 15th century in the Punjab region of India, is a monotheistic religion 
-              centered on the belief in one creator. It emphasizes equality, truthful living, and social justice.
-              Our organization is fundamentally guided by three core pillars of Sikhism:
+              centered on the belief in one creator. It emphasizes equality, truthful living, and social justice. 
+              Our organization is fundamentally guided by the following seven core pillars rooted in the Sikh principles of selfless-service:
             </p>
-            <div className="grid md:grid-cols-3 gap-8 mt-8">
-              <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm text-center">
-                <h4 className="font-bold text-xl text-slate-800 mb-2">Naam Japo</h4>
-                <p className="text-sm">Remembering the Creator at all times and meditating on God's name.</p>
-              </div>
-              <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm text-center">
-                <h4 className="font-bold text-xl text-slate-800 mb-2">Kirat Karo</h4>
-                <p className="text-sm">Earning a living honestly through hard work, without exploiting or harming others.</p>
-              </div>
-              <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm text-center">
-                <h4 className="font-bold text-xl text-slate-800 mb-2">Vand Chhako</h4>
-                <p className="text-sm">Sharing the fruits of one's labor with others, especially those in need, which directly inspires our commitment to Seva.</p>
-              </div>
+            <div className="flex flex-col gap-6 mt-12">
+              {[
+                { letter: 'L', title: 'Loyalty', desc: 'Fostering commitment to faith, brotherhood, values, and community, standing by one another with integrity and trust.', color: 'var(--ykb-blue)' },
+                { letter: 'E', title: 'Empathy', desc: 'Cultivating compassion and understanding for others through service to all, recognizing the dignity and humanity in every person.', color: 'var(--ykb-green)' },
+                { letter: 'A', title: 'Advocacy', desc: 'Empowering youth to stand up for justice, speak for those without a voice, and represent Sikh values with integrity and courage.', color: 'var(--ykb-orange)' },
+                { letter: 'D', title: 'Discipline', desc: 'Instilling self-discipline, responsibility, and commitment in thought and action, guided by the values of Sikhi and personal accountability.', color: 'var(--ykb-blue)' },
+                { letter: 'E', title: 'Empowerment', desc: 'Providing mentorship and leadership opportunities that empower young boys to believe in themselves and their ability to create positive change, developing into confident, accountable leaders.', color: 'var(--ykb-green)' },
+                { letter: 'R', title: 'Resilience', desc: 'Building mental, emotional, and moral strength to face challenges with courage, perseverance, and humility.', color: 'var(--ykb-orange)' },
+                { letter: 'S', title: 'Seva (service)', desc: 'Placing selfless service at the heart of all actions, fostering a lasting dedication to serving humanity beyond self-interest.', color: 'var(--ykb-blue)' },
+              ].map((pillar, idx) => (
+                <div key={idx} className="flex items-start md:items-center flex-col md:flex-row gap-6 bg-white p-6 md:p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                  <div 
+                    className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-4xl md:text-5xl font-black text-white shadow-inner"
+                    style={{ backgroundColor: pillar.color }}
+                  >
+                    {pillar.letter}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-2xl mb-2" style={{ color: pillar.color }}>{pillar.title}</h4>
+                    <p className="text-slate-600 leading-relaxed m-0">{pillar.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

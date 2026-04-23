@@ -33,7 +33,7 @@ export default function About() {
             </div>
             <h3 className="text-2xl font-bold text-slate-900 mb-4">Who We Are</h3>
             <p className="text-slate-600 leading-loose">
-              We are a single chapter organization based in Glen Rock, New Jersey. Operating as a registered 501(c)(3) nonprofit organization, we were founded by Sikh boys with a powerful vision: to take an active role in serving our local communities while building lifelong bonds of brotherhood.
+              We are a registered 501(c)(3) nonprofit organization, led by Sikh boys with a powerful vision: to take an active role in serving our local communities while building lifelong bonds of brotherhood.
             </p>
           </section>
 

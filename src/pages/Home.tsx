@@ -6,8 +6,11 @@ import { useEffect } from 'react';
 
 // For the carousel
 const carouselPhotos = [
-  "",
-  "",
+  "/photocarousel/ykb_c0-lunch.jpeg",
+  "/photocarousel/ykb_c1-signature.jpeg",
+  "/photocarousel/ykb_c2-pres1.jpeg",
+  "/photocarousel/ykb_c3-pres2.jpeg",
+  "/photocarousel/ykb_c4-pres3.jpeg"
 ];
 
 export default function Home() {

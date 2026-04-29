@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { ChevronRight, Heart, Users, Map } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
-import heroBg from '../assets/herosectionbg.png';
+import heroBg from '../assets/herosectionbg.jpeg';
 import { useEffect } from 'react';
 
 // For the carousel
 const carouselPhotos = [
   "/photocarousel/ykb_c0-lunch.jpeg",
-  "/photocarousel/ykb_c1-signature.jpeg",
+  "/photocarousel/ykb_c1-baskeball.png",
   "/photocarousel/ykb_c2-pres1.jpeg",
   "/photocarousel/ykb_c3-pres2.jpeg",
   "/photocarousel/ykb_c4-pres3.jpeg"

@@ -1,4 +1,4 @@
-import { ChevronRight, Heart, Users, Map } from 'lucide-react';
+import { CalendarDays, ChevronRight, HandHeart, Heart, Map, Users } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
 import heroBg from '../assets/herosectionbg.jpeg';
 import { useEffect } from 'react';
@@ -58,7 +58,7 @@ export default function Home() {
 
       {/* Rigid Action Buttons */}
       <section className="relative z-20 -mt-8 md:-mt-12 max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 shadow-md rounded-lg bg-[#FFFDF9] p-4 md:p-3 border border-[#EADFC9]">
+        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-4 shadow-md rounded-lg bg-[#FFFDF9] p-4 md:p-3 border border-[#EADFC9]">
           
           {/* About Us Card */}
           <div className="col-span-1 rounded-md bg-[#FFFDF9] border border-[#EADFC9] hover:border-slate-400 overflow-hidden transition-all group">
@@ -94,6 +94,32 @@ export default function Home() {
                   <Heart className="w-6 h-6" />
                 </div>
                 <span className="font-serif font-bold text-lg text-[#2B2317]">Projects</span>
+              </div>
+              <ChevronRight className="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+
+          {/* Fundraisers Card */}
+          <div className="col-span-1 rounded-md bg-[#FFFDF9] border border-[#EADFC9] hover:border-slate-400 overflow-hidden transition-all group">
+            <a href="/fundraisers" className="flex items-center justify-between p-6 h-full text-slate-800 hover:text-[var(--ykb-blue)] transition-colors">
+              <div className="flex items-center gap-3">
+                <div className="p-3 bg-[var(--ykb-blue)]/5 rounded border border-[var(--ykb-blue)]/10 text-[var(--ykb-blue)] group-hover:bg-[var(--ykb-blue)] group-hover:text-white transition-colors">
+                  <HandHeart className="w-6 h-6" />
+                </div>
+                <span className="font-serif font-bold text-lg text-[#2B2317]">Fundraisers</span>
+              </div>
+              <ChevronRight className="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+
+          {/* Events Card */}
+          <div className="col-span-1 rounded-md bg-[#FFFDF9] border border-[#EADFC9] hover:border-slate-400 overflow-hidden transition-all group">
+            <a href="/events" className="flex items-center justify-between p-6 h-full text-slate-800 hover:text-[var(--ykb-green)] transition-colors">
+              <div className="flex items-center gap-3">
+                <div className="p-3 bg-[var(--ykb-green)]/5 rounded border border-[var(--ykb-green)]/10 text-[var(--ykb-green)] group-hover:bg-[var(--ykb-green)] group-hover:text-white transition-colors">
+                  <CalendarDays className="w-6 h-6" />
+                </div>
+                <span className="font-serif font-bold text-lg text-[#2B2317]">Events</span>
               </div>
               <ChevronRight className="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition-transform" />
             </a>

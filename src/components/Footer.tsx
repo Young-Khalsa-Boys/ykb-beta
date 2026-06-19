@@ -20,6 +20,8 @@ export function Footer() {
             <ul className="space-y-2 text-center text-sm">
               <li><a href="/about" className="hover:text-[var(--ykb-orange)] transition-colors">About Us</a></li>
               <li><a href="/projects" className="hover:text-[var(--ykb-green)] transition-colors">Our Projects</a></li>
+              <li><a href="/fundraisers" className="hover:text-[var(--ykb-blue)] transition-colors">Fundraisers</a></li>
+              <li><a href="/events" className="hover:text-[var(--ykb-orange)] transition-colors">Events</a></li>
               <li><a href="/members" className="hover:text-[var(--ykb-blue)] transition-colors">Members</a></li>
             </ul>
           </div>

@@ -3,6 +3,8 @@ const navLinks = [
   { name: 'About', path: '/about' },
   { name: 'Members', path: '/members' },
   { name: 'Projects', path: '/projects' },
+  { name: 'Fundraisers', path: '/fundraisers' },
+  { name: 'Events', path: '/events' },
 ];
 
 interface NavigationProps {
@@ -38,7 +40,7 @@ export function Navigation({ currentPath }: NavigationProps) {
                   key={link.path}
                   href={link.path}
                   className={`
-                    px-3 py-1.5 text-sm font-semibold transition-all duration-200 border-b-2
+                    px-2.5 py-1.5 text-sm font-semibold transition-all duration-200 border-b-2
                     ${isActive 
                       ? 'border-[var(--ykb-blue)] text-[var(--ykb-blue)]' 
                       : 'border-transparent text-slate-600 hover:text-slate-900 hover:border-[#EADFC9]'}
@@ -54,7 +56,7 @@ export function Navigation({ currentPath }: NavigationProps) {
               href="https://givebutter.com/young-khalsa-boys-fundraiser-bq2wmc"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2 rounded bg-[var(--ykb-orange)] hover:bg-orange-600 text-white text-sm font-bold shadow-sm transition-all duration-200 ml-4 flex items-center justify-center border border-transparent"
+              className="px-4 py-2 rounded bg-[var(--ykb-orange)] hover:bg-orange-600 text-white text-sm font-bold shadow-sm transition-all duration-200 ml-3 flex items-center justify-center border border-transparent"
             >
               Donate
             </a>

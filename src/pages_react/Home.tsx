@@ -1,4 +1,3 @@
-import { CalendarDays, ChevronRight, HandHeart, Heart, Map, Users } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
 import heroBg from '../assets/herosectionbg.jpeg';
 import { useEffect } from 'react';
@@ -11,6 +10,39 @@ const carouselPhotos = [
   "/photocarousel/ykb_c2-pres1.jpeg",
   "/photocarousel/ykb_c3-pres2.jpeg",
   "/photocarousel/ykb_c4-pres3.jpeg"
+];
+
+const actionLinks = [
+  {
+    title: 'About Us',
+    text: 'Learn the mission and values behind Young Khalsa Boys.',
+    href: '/about',
+    cta: 'Meet YKB',
+  },
+  {
+    title: 'Members',
+    text: 'See the brotherhood helping lead service in our community.',
+    href: '/members',
+    cta: 'Meet the group',
+  },
+  {
+    title: 'Projects',
+    text: 'Follow the seva work our members are building together.',
+    href: '/projects',
+    cta: 'View projects',
+  },
+  {
+    title: 'Fundraisers',
+    text: 'Support the efforts that help make our service possible.',
+    href: '/fundraisers',
+    cta: 'See fundraisers',
+  },
+  {
+    title: 'Events',
+    text: 'Find upcoming service days, community events, and recaps.',
+    href: '/events',
+    cta: 'View events',
+  },
 ];
 
 export default function Home() {
@@ -56,87 +88,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Rigid Action Buttons */}
+      {/* Ways to Get Involved */}
       <section className="relative z-20 -mt-8 md:-mt-12 max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-4 shadow-md rounded-lg bg-[#FFFDF9] p-4 md:p-3 border border-[#EADFC9]">
-          
-          {/* About Us Card */}
-          <div className="col-span-1 rounded-md bg-[#FFFDF9] border border-[#EADFC9] hover:border-slate-400 overflow-hidden transition-all group">
-            <a href="/about" className="flex items-center justify-between p-6 h-full text-slate-800 hover:text-[var(--ykb-blue)] transition-colors">
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-[var(--ykb-blue)]/5 rounded border border-[var(--ykb-blue)]/10 text-[var(--ykb-blue)] group-hover:bg-[var(--ykb-blue)] group-hover:text-white transition-colors">
-                  <Map className="w-6 h-6" />
-                </div>
-                <span className="font-serif font-bold text-lg text-[#2B2317]">About Us</span>
-              </div>
-              <ChevronRight className="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition-transform" />
-            </a>
+        <div className="bg-[#FFFDF9] border border-[#EADFC9] shadow-md">
+          <div className="px-6 py-6 md:px-8 border-b border-[#EADFC9]">
+            <p className="text-[var(--ykb-orange)] text-sm font-bold uppercase tracking-widest mb-2">
+              Make a Difference
+            </p>
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#2B2317]">
+              Small acts of seva add up.
+            </h2>
           </div>
 
-          {/* Members Card */}
-          <div className="col-span-1 rounded-md bg-[#FFFDF9] border border-[#EADFC9] hover:border-slate-400 overflow-hidden transition-all group">
-            <a href="/members" className="flex items-center justify-between p-6 h-full text-slate-800 hover:text-[var(--ykb-green)] transition-colors">
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-[var(--ykb-green)]/5 rounded border border-[var(--ykb-green)]/10 text-[var(--ykb-green)] group-hover:bg-[var(--ykb-green)] group-hover:text-white transition-colors">
-                  <Users className="w-6 h-6" />
-                </div>
-                <span className="font-serif font-bold text-lg text-[#2B2317]">Members</span>
-              </div>
-              <ChevronRight className="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition-transform" />
-            </a>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-b border-[#EADFC9]">
+            {actionLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="min-h-44 p-6 border-b sm:border-r border-[#EADFC9] last:border-b-0 hover:bg-[#FAF6EE] transition-colors"
+              >
+                <h3 className="text-2xl font-serif font-bold text-[#2B2317] mb-3">{link.title}</h3>
+                <p className="text-slate-700 leading-relaxed mb-5">{link.text}</p>
+                <span className="text-sm font-bold uppercase tracking-widest text-[var(--ykb-blue)]">{link.cta}</span>
+              </a>
+            ))}
           </div>
 
-          {/* Projects Card */}
-          <div className="col-span-1 rounded-md bg-[#FFFDF9] border border-[#EADFC9] hover:border-slate-400 overflow-hidden transition-all group">
-            <a href="/projects" className="flex items-center justify-between p-6 h-full text-slate-800 hover:text-[var(--ykb-orange)] transition-colors">
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-[var(--ykb-orange)]/5 rounded border border-[var(--ykb-orange)]/10 text-[var(--ykb-orange)] group-hover:bg-[var(--ykb-orange)] group-hover:text-white transition-colors">
-                  <Heart className="w-6 h-6" />
-                </div>
-                <span className="font-serif font-bold text-lg text-[#2B2317]">Projects</span>
-              </div>
-              <ChevronRight className="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-
-          {/* Fundraisers Card */}
-          <div className="col-span-1 rounded-md bg-[#FFFDF9] border border-[#EADFC9] hover:border-slate-400 overflow-hidden transition-all group">
-            <a href="/fundraisers" className="flex items-center justify-between p-6 h-full text-slate-800 hover:text-[var(--ykb-blue)] transition-colors">
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-[var(--ykb-blue)]/5 rounded border border-[var(--ykb-blue)]/10 text-[var(--ykb-blue)] group-hover:bg-[var(--ykb-blue)] group-hover:text-white transition-colors">
-                  <HandHeart className="w-6 h-6" />
-                </div>
-                <span className="font-serif font-bold text-lg text-[#2B2317]">Fundraisers</span>
-              </div>
-              <ChevronRight className="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-
-          {/* Events Card */}
-          <div className="col-span-1 rounded-md bg-[#FFFDF9] border border-[#EADFC9] hover:border-slate-400 overflow-hidden transition-all group">
-            <a href="/events" className="flex items-center justify-between p-6 h-full text-slate-800 hover:text-[var(--ykb-green)] transition-colors">
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-[var(--ykb-green)]/5 rounded border border-[var(--ykb-green)]/10 text-[var(--ykb-green)] group-hover:bg-[var(--ykb-green)] group-hover:text-white transition-colors">
-                  <CalendarDays className="w-6 h-6" />
-                </div>
-                <span className="font-serif font-bold text-lg text-[#2B2317]">Events</span>
-              </div>
-              <ChevronRight className="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-
-          {/* Donate Card */}
-          <div className="col-span-1 rounded-md bg-[var(--ykb-orange)] hover:bg-orange-600 overflow-hidden shadow-sm transition-all group">
+          <div className="bg-[var(--ykb-orange)] hover:bg-orange-600 transition-colors">
             <a
               href="https://givebutter.com/young-khalsa-boys-fundraiser-bq2wmc"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center p-6 h-full text-white text-center"
+              className="flex min-h-20 items-center justify-center px-6 py-5 text-white text-center"
             >
-              <span className="font-serif font-bold text-xl uppercase tracking-wider">Donate</span>
+              <span className="font-serif font-bold text-xl uppercase tracking-wider leading-tight">Donate to Support the Work</span>
             </a>
           </div>
-
         </div>
       </section>
 

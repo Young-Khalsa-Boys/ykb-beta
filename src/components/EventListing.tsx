@@ -1,4 +1,4 @@
-import { CalendarDays, ChevronDown, HandHeart, MapPin, Users } from 'lucide-react';
+import { useState } from 'react';
 
 export interface EventItem {
   id: string;
@@ -6,10 +6,11 @@ export interface EventItem {
   category: string;
   date: string;
   location: string;
-  image: string;
-  imageAlt: string;
+  images: {
+    src: string;
+    alt: string;
+  }[];
   summary: string;
-  details: string;
   impact: string;
 }
 
@@ -21,78 +22,126 @@ interface EventListingProps {
   emptyMessage?: string;
 }
 
-export function EventListing({ eyebrow, title, intro, items, emptyMessage }: EventListingProps) {
+function EventPhotoCarousel({ event }: { event: EventItem }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeImage = event.images[activeIndex] ?? event.images[0];
+  const hasMultipleImages = event.images.length > 1;
+
+  if (!activeImage) {
+    return <div className="aspect-[16/10] bg-[#EADFC9]" aria-label={`Photo area for ${event.name}`} />;
+  }
+
+  const goToPrevious = () => {
+    setActiveIndex((current) => (current === 0 ? event.images.length - 1 : current - 1));
+  };
+
+  const goToNext = () => {
+    setActiveIndex((current) => (current + 1) % event.images.length);
+  };
+
   return (
-    <div className="min-h-screen bg-[#FAF6EE] pt-20 pb-24">
-      <div className="mb-20 text-center max-w-3xl mx-auto px-4 mt-8">
-        <h2 className="text-[var(--ykb-green)] font-sans font-bold uppercase tracking-widest text-sm mb-4">
-          {eyebrow}
-        </h2>
-        <h1 className="text-4xl md:text-5xl font-serif font-bold text-[#2B2317] mb-6">{title}</h1>
-        <p className="text-lg text-slate-700 leading-relaxed max-w-2xl mx-auto">{intro}</p>
+    <div className="space-y-4">
+      <div className="relative overflow-hidden bg-[#FFFDF9]">
+        <img
+          src={activeImage.src}
+          alt={activeImage.alt}
+          className="aspect-[16/10] w-full object-cover"
+          loading="lazy"
+        />
+
+        {hasMultipleImages && (
+          <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-[#19221C]/75 px-4 py-3 text-white">
+            <button
+              type="button"
+              onClick={goToPrevious}
+              className="font-sans text-sm font-bold uppercase tracking-widest hover:text-[#F7B267]"
+            >
+              Previous
+            </button>
+            <p className="text-sm font-semibold">
+              {activeIndex + 1} / {event.images.length}
+            </p>
+            <button
+              type="button"
+              onClick={goToNext}
+              className="font-sans text-sm font-bold uppercase tracking-widest hover:text-[#F7B267]"
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
 
+      {hasMultipleImages && (
+        <div className="flex gap-3 overflow-x-auto pb-2">
+          {event.images.map((image, index) => (
+            <button
+              key={image.src}
+              type="button"
+              onClick={() => setActiveIndex(index)}
+              className={`h-20 w-28 flex-shrink-0 overflow-hidden border-2 ${
+                activeIndex === index ? 'border-[var(--ykb-orange)]' : 'border-transparent'
+              }`}
+              aria-label={`Show photo ${index + 1} for ${event.name}`}
+            >
+              <img src={image.src} alt="" className="h-full w-full object-cover" loading="lazy" />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function EventListing({ eyebrow, title, intro, items, emptyMessage }: EventListingProps) {
+  return (
+    <div className="min-h-screen bg-[#FAF6EE] pt-16 pb-24">
+      <section className="bg-[#FFFDF9] border-y border-[#EADFC9]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+          <p className="text-[var(--ykb-green)] font-sans font-bold uppercase tracking-widest text-sm mb-5">
+            {eyebrow}
+          </p>
+          <div className="grid lg:grid-cols-[0.85fr_1.15fr] gap-8 lg:gap-14 items-end">
+            <h1 className="text-4xl md:text-6xl font-serif font-bold text-[#2B2317] leading-tight">{title}</h1>
+            <p className="text-xl md:text-2xl text-slate-700 leading-relaxed font-serif">{intro}</p>
+          </div>
+        </div>
+      </section>
+
       {items.length === 0 ? (
-        <div className="max-w-md mx-auto px-4 text-center py-12">
-          <div className="bg-[#FFFDF9] border border-[#EADFC9] rounded-lg py-12 px-6 shadow-sm font-serif font-bold text-xl text-[var(--ykb-orange)] tracking-widest">
+        <div className="max-w-4xl mx-auto px-4 text-center py-16">
+          <div className="bg-[#FFFDF9] border border-[#EADFC9] py-14 px-6 font-serif font-bold text-xl text-[var(--ykb-orange)] tracking-widest">
             {emptyMessage ?? 'COMING SOON!!!'}
           </div>
         </div>
       ) : (
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-          {items.map((item, index) => (
-            <article
-              key={item.id}
-              className={`flex flex-col md:flex-row gap-10 items-stretch ${
-                index % 2 !== 0 ? 'md:flex-row-reverse' : ''
-              }`}
-            >
-              <div className="w-full md:w-1/2">
-                <div className="aspect-[4/3] rounded-lg overflow-hidden bg-[#FFFDF9] border border-[#EADFC9] shadow-sm">
-                  <img
-                    src={item.image}
-                    alt={item.imageAlt}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 space-y-24">
+          {items.map((item) => (
+            <article key={item.id} className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-16 items-start">
+              <EventPhotoCarousel event={item} />
 
-              <div className="w-full md:w-1/2 bg-[#FFFDF9] border border-[#EADFC9] rounded-lg p-6 md:p-8 shadow-sm flex flex-col">
-                <span className="w-fit mb-4 px-3 py-1 rounded bg-[var(--ykb-orange)]/10 border border-[var(--ykb-orange)]/20 text-[var(--ykb-orange)] text-xs font-bold uppercase tracking-widest">
-                  {item.category}
-                </span>
-                <h3 className="text-3xl font-serif font-bold text-[#2B2317] mb-5">{item.name}</h3>
+              <div className="lg:pt-8">
+                <p className="text-[var(--ykb-orange)] text-sm font-bold uppercase tracking-widest mb-4">{item.category}</p>
+                <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#2B2317] leading-tight mb-8">
+                  {item.name}
+                </h2>
 
-                <div className="flex flex-col gap-3 mb-6">
-                  <div className="flex items-center gap-3 text-slate-700">
-                    <CalendarDays className="w-5 h-5 text-[var(--ykb-blue)] flex-shrink-0" />
-                    <span className="font-semibold text-sm">{item.date}</span>
+                <dl className="grid sm:grid-cols-3 lg:grid-cols-1 gap-5 border-y border-[#EADFC9] py-6 mb-8">
+                  <div>
+                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">When</dt>
+                    <dd className="font-semibold text-[#2B2317]">{item.date}</dd>
                   </div>
-                  <div className="flex items-center gap-3 text-slate-700">
-                    <MapPin className="w-5 h-5 text-[var(--ykb-orange)] flex-shrink-0" />
-                    <span className="font-semibold text-sm">{item.location}</span>
+                  <div>
+                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Where</dt>
+                    <dd className="font-semibold text-[#2B2317]">{item.location}</dd>
                   </div>
-                  <div className="flex items-center gap-3 text-slate-700">
-                    <Users className="w-5 h-5 text-[var(--ykb-green)] flex-shrink-0" />
-                    <span className="font-semibold text-sm">{item.impact}</span>
+                  <div>
+                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Why</dt>
+                    <dd className="font-semibold text-[#2B2317]">{item.impact}</dd>
                   </div>
-                </div>
+                </dl>
 
-                <div className="w-12 h-1 bg-[var(--ykb-green)] rounded-full mb-6" />
-
-                <p className="text-slate-700 leading-relaxed mb-6">{item.summary}</p>
-
-                <details className="group mt-auto border-t border-[#EADFC9] pt-5">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-[var(--ykb-blue)] font-bold">
-                    <span className="inline-flex items-center gap-2">
-                      <HandHeart className="w-5 h-5" />
-                      View more
-                    </span>
-                    <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180" />
-                  </summary>
-                  <p className="mt-4 text-slate-700 leading-relaxed">{item.details}</p>
-                </details>
+                <p className="text-lg text-slate-700 leading-relaxed">{item.summary}</p>
               </div>
             </article>
           ))}

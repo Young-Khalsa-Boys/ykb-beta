@@ -7,12 +7,22 @@ const events: EventItem[] = [
     category: 'Event',
     date: 'June 2026',
     location: 'Salvation Army, Passaic, NJ',
-    image: '/photocarousel/ykb_c0-lunch.jpeg',
-    imageAlt: 'Young Khalsa Boys members serving meals during a community service activity',
+    images: [
+      {
+        src: '/photocarousel/ykb_c0-lunch.jpeg',
+        alt: 'Young Khalsa Boys members serving meals during a community service activity',
+      },
+      {
+        src: '/photocarousel/ykb_c4-pres3.jpeg',
+        alt: 'Young Khalsa Boys members gathered for a presentation',
+      },
+      {
+        src: '/photocarousel/ykb_c2-pres1.jpeg',
+        alt: 'Young Khalsa Boys members preparing for a community project',
+      },
+    ],
     summary:
-      'Young Khalsa Boys will support the Salvation Army in Passaic through a service project focused on helping local families and neighbors.',
-    details:
-      'This template event page highlights the project name, date, location, image, and expandable event story. As planning continues, this section can be updated with volunteer roles, schedule details, donation needs, and a recap of the seva completed.',
+      'Young Khalsa Boys will support the Salvation Army in Passaic through a service project focused on helping local families and neighbors. As planning continues, this page can grow with volunteer roles, schedule details, donation needs, and a recap of the seva completed.',
     impact: 'Serving neighbors in Passaic',
   },
 ];

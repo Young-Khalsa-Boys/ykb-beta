@@ -7,12 +7,22 @@ const fundraisers: EventItem[] = [
     category: 'Fundraiser',
     date: 'May 2026',
     location: 'Oakland Gurdwara, Oakland, NJ',
-    image: '/photocarousel/ykb_c1-basketball.png',
-    imageAlt: 'Young Khalsa Boys members gathered during a community activity',
+    images: [
+      {
+        src: '/photocarousel/ykb_c1-basketball.png',
+        alt: 'Young Khalsa Boys members gathered during a community activity',
+      },
+      {
+        src: '/photocarousel/ykb_c2-pres1.jpeg',
+        alt: 'Young Khalsa Boys members presenting during a community gathering',
+      },
+      {
+        src: '/photocarousel/ykb_c3-pres2.jpeg',
+        alt: 'Young Khalsa Boys members speaking together at an event',
+      },
+    ],
     summary:
-      'Young Khalsa Boys will host a community car wash fundraiser at the Oakland Gurdwara to support upcoming seva initiatives.',
-    details:
-      'Members will work together to welcome families, wash cars, collect donations, and build awareness for future Young Khalsa Boys projects. The fundraiser is designed as a hands-on leadership opportunity rooted in teamwork, humility, and service.',
+      'Young Khalsa Boys will host a community car wash fundraiser at the Oakland Gurdwara to support upcoming seva initiatives. Members will welcome families, wash cars, collect donations, and build awareness for future projects through a hands-on day of teamwork and service.',
     impact: 'Supporting future YKB service projects',
   },
 ];

@@ -1,6 +1,7 @@
 import { EventListing, type EventItem } from "../components/EventListing";
 
 const projects: EventItem[] = [
+  /*
   {
     id: "test-community-project",
     name: "Test Community Project",
@@ -21,6 +22,7 @@ const projects: EventItem[] = [
       "This test project is included to preview how multiple project cards stack on the page. It can be replaced once another real service project is ready to publish.",
     impact: "Testing multi-project page layout",
   },
+  */
 ];
 
 export default function Projects() {

@@ -2,12 +2,12 @@ import { EventListing, type EventItem } from "../components/EventListing";
 
 const fundraisers: EventItem[] = [
   {
-    id: "test-fundraiser-2026",
-    name: "Test Fundraiser",
+    id: "ykb-carwash-2026",
+    name: "YKB Car Wash",
     category: "Fundraiser",
-    date: "August 2026",
-    location: "Test Location, New Jersey",
-    impact: "Testing multi-fundraiser page layout",
+    date: "May 17, 2026",
+    location: "Guru Nanak Mission Gurudwara, Oakland, NJ",
+    impact: "Raised $2570 for future YKB Seva initiatives",
     images: [
       {
         src: "/photocarousel/ykb_c4-pres3.jpeg",
@@ -19,7 +19,7 @@ const fundraisers: EventItem[] = [
       },
     ],
     summary:
-      "This test fundraiser is included to check how multiple fundraiser cards read on the page. It can be removed or replaced when the next real fundraiser is ready.",
+      "With over 40 cars washed, our Young Khalsa Boys Car Wash event was a HUGE success. Together, we raised $2570 for future YKB Seva initiatives. Thank you to the community for your support!",
   },
 ];
 

@@ -91,9 +91,8 @@ function EventPhotoCarousel({ event }: { event: EventItem }) {
               key={image.src}
               type="button"
               onClick={() => setActiveIndex(index)}
-              className={`h-20 w-28 flex-shrink-0 overflow-hidden border-2 ${
-                activeIndex === index ? 'border-[var(--ykb-orange)]' : 'border-transparent'
-              }`}
+              className={`h-20 w-28 flex-shrink-0 overflow-hidden border-2 ${activeIndex === index ? 'border-[var(--ykb-orange)]' : 'border-transparent'
+                }`}
               aria-label={`Show photo ${index + 1} for ${event.name}`}
             >
               <img src={image.src} alt="" className="h-full w-full object-cover" loading="lazy" />
@@ -143,15 +142,15 @@ export function EventListing({ eyebrow, title, intro, items, emptyMessage }: Eve
 
                 <dl className="grid sm:grid-cols-3 lg:grid-cols-1 gap-5 border-y border-[#EADFC9] py-6 mb-8">
                   <div>
-                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">When</dt>
+                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Event Date(s)</dt>
                     <dd className="font-semibold text-[#2B2317]">{item.date}</dd>
                   </div>
                   <div>
-                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Where</dt>
+                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Event Location</dt>
                     <dd className="font-semibold text-[#2B2317]">{item.location}</dd>
                   </div>
                   <div>
-                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Why</dt>
+                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Our Impact</dt>
                     <dd className="font-semibold text-[#2B2317]">{item.impact}</dd>
                   </div>
                 </dl>

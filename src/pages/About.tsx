@@ -1,11 +1,17 @@
 export default function About() {
+  const colorMap: Record<string, { bg: string; text: string }> = {
+    'var(--ykb-blue)': { bg: '#0756a1', text: '#0756a1' },
+    'var(--ykb-green)': { bg: '#3D8C1A', text: '#3D8C1A' },
+    'var(--ykb-orange)': { bg: '#E86D1A', text: '#E86D1A' },
+  };
+
   return (
-    <div className="min-h-screen bg-slate-50 pt-20 pb-24">
+    <div className="min-h-screen bg-[#FAF6EE] pt-20 pb-24">
       {/* Header */}
-      <div className="bg-[var(--ykb-blue)] text-white py-24 mb-16 px-4">
+      <div className="bg-[#0756a1] text-white py-20 mb-16 px-4 border-y border-[#EADFC9] shadow-sm">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">About Our Organization</h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">About Our Organization</h1>
+          <p className="text-lg text-blue-50/90 max-w-2xl mx-auto">
             Discover who we are, where we come from, and the core tenets that drive our mission forward.
           </p>
         </div>
@@ -14,11 +20,10 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
         
         {/* Mission Statement */}
-        <section className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--ykb-orange)]/10 rounded-bl-full pointer-events-none" />
+        <section className="bg-[#FFFDF9] rounded-lg p-8 md:p-12 shadow-sm border border-[#EADFC9] relative overflow-hidden">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-[var(--ykb-orange)] font-bold tracking-widest uppercase text-sm mb-4">Our Mission</h2>
-            <p className="text-2xl md:text-3xl font-medium text-slate-800 leading-relaxed">
+            <h2 className="text-[var(--ykb-orange)] font-sans font-bold tracking-widest uppercase text-sm mb-4">Our Mission</h2>
+            <p className="text-2xl md:text-3xl font-serif font-medium text-[#2B2317] leading-relaxed">
               Young Khalsa Boys empowers Sikh boys to grow into the next generation of compassionate leaders through boy-led community service initiatives and mentorship.
             </p>
           </div>
@@ -27,23 +32,23 @@ export default function About() {
         {/* Two Column Layout for Origin & Seva */}
         <div className="grid md:grid-cols-2 gap-12">
           {/* Origin */}
-          <section className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
-            <div className="w-12 h-12 bg-[var(--ykb-blue)]/10 rounded-full flex items-center justify-center mb-6 text-[var(--ykb-blue)]">
-              <svg className="w-6 h-6" fill="fill-current" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+          <section className="bg-[#FFFDF9] p-8 rounded-lg shadow-sm border border-[#EADFC9]">
+            <div className="w-12 h-12 bg-[var(--ykb-blue)]/5 rounded border border-[var(--ykb-blue)]/10 flex items-center justify-center mb-6 text-[var(--ykb-blue)]">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
             </div>
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">Who We Are</h3>
-            <p className="text-slate-600 leading-loose">
+            <h3 className="text-2xl font-serif font-bold text-[#2B2317] mb-4">Who We Are</h3>
+            <p className="text-slate-700 leading-relaxed font-sans">
               We are a registered 501(c)(3) nonprofit organization, led by Sikh boys with a powerful vision: to take an active role in serving our local communities while building lifelong bonds of brotherhood.
             </p>
           </section>
 
           {/* Definition of Sewa */}
-          <section className="bg-[var(--ykb-green)] text-white p-8 rounded-3xl shadow-lg shadow-[var(--ykb-green)]/20">
-            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-6">
-              <svg className="w-6 h-6" fill="black" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+          <section className="bg-[#3D8C1A] text-white p-8 rounded-lg shadow-sm border border-[#2e6b12]">
+            <div className="w-12 h-12 bg-white/10 rounded flex items-center justify-center mb-6">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
             </div>
-            <h3 className="text-2xl font-bold mb-4">The Meaning of Seva</h3>
-            <p className="text-green-50 leading-loose">
+            <h3 className="text-2xl font-serif font-bold mb-4">The Meaning of Seva</h3>
+            <p className="text-green-50/90 leading-relaxed font-sans">
               <strong>Seva</strong> (also spelled Sewa) is a Sanskrit word meaning "selfless service." 
               In Sikhism, it is an essential principle and a moral duty. It implies performing an act 
               of service without any thought for reward or personal gain. Through Seva, we learn humility,
@@ -55,11 +60,11 @@ export default function About() {
         {/* YKB Pillars */}
         <section className="max-w-4xl mx-auto pb-12">
           <div className="text-center mb-12">
-            <h2 className="text-[var(--ykb-blue)] text-sm font-bold uppercase tracking-widest mb-2">Our Foundation</h2>
-            <h3 className="text-3xl font-bold text-slate-900">Core Pillars</h3>
+            <h2 className="text-[var(--ykb-blue)] text-sm font-sans font-bold uppercase tracking-widest mb-2">Our Foundation</h2>
+            <h3 className="text-3xl font-serif font-bold text-[#2B2317]">Core Pillars</h3>
           </div>
-          <div className="prose prose-lg text-slate-600 max-w-none">
-            <p className="text-center">
+          <div className="prose prose-lg text-slate-700 max-w-none">
+            <p className="text-center font-sans leading-relaxed">
               Sikhism, founded in the 15th century in the Punjab region of India, is a monotheistic religion 
               centered on the belief in one creator. It emphasizes equality, truthful living, and social justice. 
               Our organization is fundamentally guided by the following seven core pillars rooted in the Sikh principles of selfless-service:
@@ -73,20 +78,23 @@ export default function About() {
                 { letter: 'E', title: 'Empowerment', desc: 'Providing mentorship and leadership opportunities that empower young boys to believe in themselves and their ability to create positive change, developing into confident, accountable leaders.', color: 'var(--ykb-green)' },
                 { letter: 'R', title: 'Resilience', desc: 'Building mental, emotional, and moral strength to face challenges with courage, perseverance, and humility.', color: 'var(--ykb-orange)' },
                 { letter: 'S', title: 'Seva (service)', desc: 'Placing selfless service at the heart of all actions, fostering a lasting dedication to serving humanity beyond self-interest.', color: 'var(--ykb-blue)' },
-              ].map((pillar, idx) => (
-                <div key={idx} className="flex items-start md:items-center flex-col md:flex-row gap-6 bg-white p-6 md:p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  <div 
-                    className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-4xl md:text-5xl font-black text-white shadow-inner"
-                    style={{ backgroundColor: pillar.color }}
-                  >
-                    {pillar.letter}
+              ].map((pillar, idx) => {
+                const colors = colorMap[pillar.color] || { bg: '#666', text: '#666' };
+                return (
+                  <div key={idx} className="flex items-start md:items-center flex-col md:flex-row gap-6 bg-[#FFFDF9] p-6 md:p-8 rounded-lg border border-[#EADFC9] shadow-sm">
+                    <div 
+                      className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded flex items-center justify-center text-4xl md:text-5xl font-serif font-black text-white shadow-sm"
+                      style={{ backgroundColor: colors.bg }}
+                    >
+                      {pillar.letter}
+                    </div>
+                    <div>
+                      <h4 className="font-serif font-bold text-2xl mb-2 animate-none" style={{ color: colors.text }}>{pillar.title}</h4>
+                      <p className="text-slate-700 leading-relaxed m-0 font-sans">{pillar.desc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-bold text-2xl mb-2" style={{ color: pillar.color }}>{pillar.title}</h4>
-                    <p className="text-slate-600 leading-relaxed m-0">{pillar.desc}</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>

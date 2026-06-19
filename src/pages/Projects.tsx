@@ -13,17 +13,21 @@
 
 export default function Projects() {
   return (
-    <div className="min-h-screen bg-white pt-16 pb-24">
+    <div className="min-h-screen bg-[#FAF6EE] pt-20 pb-24">
       {/* Header */}
       <div className="mb-20 text-center max-w-3xl mx-auto px-4 mt-8">
-        <h2 className="text-[var(--ykb-green)] font-bold uppercase tracking-widest text-sm mb-4">Our Projects</h2>
-        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Seva in Action</h1>
-        <p className="text-lg text-slate-600">
+        <h2 className="text-[var(--ykb-green)] font-sans font-bold uppercase tracking-widest text-sm mb-4">Our Projects</h2>
+        <h1 className="text-4xl md:text-5xl font-serif font-bold text-[#2B2317] mb-6">Seva in Action</h1>
+        <p className="text-lg text-slate-700 leading-relaxed max-w-2xl mx-auto">
           We believe in putting our faith into practice. Explore some of our recent community service initiatives where our members took the lead in making a tangible difference.
         </p>
       </div>
 
-      COMING SOON!!!
+      <div className="max-w-md mx-auto px-4 text-center py-12">
+        <div className="bg-[#FFFDF9] border border-[#EADFC9] rounded-lg py-12 px-6 shadow-sm font-serif font-bold text-xl text-[var(--ykb-orange)] tracking-widest">
+          COMING SOON!!!
+        </div>
+      </div>
 
       {/* <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
         {projectsList.map((project, index) => (

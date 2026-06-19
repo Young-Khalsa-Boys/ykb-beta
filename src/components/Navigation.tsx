@@ -11,7 +11,7 @@ export function Navigation() {
   const location = useLocation();
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <header className="sticky top-0 z-50 w-full bg-[#FFFDF9] border-b border-[#EADFC9] shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo and Name */}
@@ -19,15 +19,15 @@ export function Navigation() {
             <img 
               src="/logo.png" 
               alt="Young Khalsa Boys Logo" 
-              className="h-12 w-auto object-contain transition-transform group-hover:scale-105"
+              className="h-12 w-auto object-contain transition-transform group-hover:scale-102"
             />
-            <span className="font-bold text-xl text-slate-800 tracking-tight hidden sm:block">
+            <span className="font-serif font-bold text-xl text-[#2B2317] tracking-tight hidden sm:block">
               Young Khalsa Boys
             </span>
           </Link>
 
           {/* Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-1">
+          <nav className="hidden md:flex items-center space-x-2">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
@@ -35,10 +35,10 @@ export function Navigation() {
                   key={link.path}
                   to={link.path}
                   className={`
-                    px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
+                    px-3 py-1.5 text-sm font-semibold transition-all duration-200 border-b-2
                     ${isActive 
-                      ? 'bg-[var(--ykb-blue)] text-white shadow-md' 
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}
+                      ? 'border-[var(--ykb-blue)] text-[var(--ykb-blue)]' 
+                      : 'border-transparent text-slate-600 hover:text-slate-900 hover:border-[#EADFC9]'}
                   `}
                 >
                   {link.name}
@@ -51,7 +51,7 @@ export function Navigation() {
               href="https://givebutter.com/young-khalsa-boys-fundraiser-bq2wmc"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 text-[var(--ykb-orange)] hover:bg-[var(--ykb-orange)] hover:text-white ml-2 flex items-center justify-center border border-[var(--ykb-orange)] hover:border-transparent group"
+              className="px-5 py-2 rounded bg-[var(--ykb-orange)] hover:bg-orange-600 text-white text-sm font-bold shadow-sm transition-all duration-200 ml-4 flex items-center justify-center border border-transparent"
             >
               Donate
             </a>
@@ -63,7 +63,7 @@ export function Navigation() {
               href="https://givebutter.com/young-khalsa-boys-fundraiser-bq2wmc"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-[var(--ykb-orange)] text-white rounded-full text-sm font-medium shadow-sm active:scale-95 transition-transform"
+              className="px-4 py-2 bg-[var(--ykb-orange)] hover:bg-orange-600 text-white rounded text-sm font-bold shadow-sm active:scale-98 transition-transform"
             >
               Donate
             </a>

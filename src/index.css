@@ -1,11 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
 @import "tailwindcss";
 
 @theme {
   --color-ykb-green: #50ad21;
   --color-ykb-orange: #ff7e25;
   --color-ykb-blue: #0756a1;
+  --color-ykb-cream: #FAF6EE;
+  --color-ykb-card: #FFFDF9;
+  --color-ykb-border: #EADFC9;
+  --color-ykb-dark: #19221C;
   
   --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Merriweather', Georgia, serif;
 }
 
 @layer base {
@@ -13,14 +19,18 @@
     --ykb-green: #50ad21;
     --ykb-orange: #ff7e25;
     --ykb-blue: #0756a1;
+    --ykb-cream: #FAF6EE;
+    --ykb-card: #FFFDF9;
+    --ykb-border: #EADFC9;
+    --ykb-dark: #19221C;
   }
   
   body {
-    @apply bg-slate-50 text-slate-900 antialiased font-sans;
+    @apply bg-[#FAF6EE] text-slate-800 antialiased font-sans;
     margin: 0;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight;
+    @apply font-serif font-bold tracking-tight text-[#2B2317];
   }
 }

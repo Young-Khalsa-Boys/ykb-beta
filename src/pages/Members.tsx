@@ -5,16 +5,20 @@
 
 export default function Members() {
   return (
-    <div className="min-h-screen bg-slate-50 pt-16 pb-24">
+    <div className="min-h-screen bg-[#FAF6EE] pt-20 pb-24">
       {/* Header Component */}
       <div className="mb-16 text-center max-w-3xl mx-auto px-4 mt-8">
-        <h1 className="text-4xl font-bold text-slate-900 mb-4">Our Members</h1>
-        <p className="text-lg text-slate-600">
+        <h1 className="text-4xl font-serif font-bold text-[#2B2317] mb-4">Our Members</h1>
+        <p className="text-lg text-slate-700 font-sans">
           Meet the dedicated young men who make our Seva possible. A brotherhood committed to community service.
         </p>
       </div>
 
-      COMING SOON!!!
+      <div className="max-w-md mx-auto px-4 text-center py-12">
+        <div className="bg-[#FFFDF9] border border-[#EADFC9] rounded-lg py-12 px-6 shadow-sm font-serif font-bold text-xl text-[var(--ykb-orange)] tracking-widest">
+          COMING SOON!!!
+        </div>
+      </div>
 
       {/* Grid */}
       {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

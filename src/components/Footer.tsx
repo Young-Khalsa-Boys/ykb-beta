@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 export function Footer() {
   const year = new Date().getFullYear();
 
@@ -20,9 +18,9 @@ export function Footer() {
           <div className="flex flex-col items-center">
             <h3 className="font-sans text-xs font-bold uppercase tracking-wider text-amber-50/70 mb-4">Quick Links</h3>
             <ul className="space-y-2 text-center text-sm">
-              <li><Link to="/about" className="hover:text-[var(--ykb-orange)] transition-colors">About Us</Link></li>
-              <li><Link to="/projects" className="hover:text-[var(--ykb-green)] transition-colors">Our Projects</Link></li>
-              <li><Link to="/members" className="hover:text-[var(--ykb-blue)] transition-colors">Members</Link></li>
+              <li><a href="/about" className="hover:text-[var(--ykb-orange)] transition-colors">About Us</a></li>
+              <li><a href="/projects" className="hover:text-[var(--ykb-green)] transition-colors">Our Projects</a></li>
+              <li><a href="/members" className="hover:text-[var(--ykb-blue)] transition-colors">Members</a></li>
             </ul>
           </div>
           

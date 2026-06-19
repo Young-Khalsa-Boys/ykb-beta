@@ -1,5 +1,3 @@
-import { Link, useLocation } from 'react-router-dom';
-
 const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'About', path: '/about' },
@@ -7,15 +5,20 @@ const navLinks = [
   { name: 'Projects', path: '/projects' },
 ];
 
-export function Navigation() {
-  const location = useLocation();
+interface NavigationProps {
+  currentPath: string;
+}
+
+export function Navigation({ currentPath }: NavigationProps) {
+  const normalizePath = (p: string) => p.replace(/\/$/, '') || '/';
+  const activePath = normalizePath(currentPath);
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[#FFFDF9] border-b border-[#EADFC9] shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo and Name */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <a href="/" className="flex items-center gap-3 group">
             <img 
               src="/logo.png" 
               alt="Young Khalsa Boys Logo" 
@@ -24,16 +27,16 @@ export function Navigation() {
             <span className="font-serif font-bold text-xl text-[#2B2317] tracking-tight hidden sm:block">
               Young Khalsa Boys
             </span>
-          </Link>
+          </a>
 
           {/* Navigation Links */}
           <nav className="hidden md:flex items-center space-x-2">
             {navLinks.map((link) => {
-              const isActive = location.pathname === link.path;
+              const isActive = activePath === normalizePath(link.path);
               return (
-                <Link
+                <a
                   key={link.path}
-                  to={link.path}
+                  href={link.path}
                   className={`
                     px-3 py-1.5 text-sm font-semibold transition-all duration-200 border-b-2
                     ${isActive 
@@ -42,7 +45,7 @@ export function Navigation() {
                   `}
                 >
                   {link.name}
-                </Link>
+                </a>
               );
             })}
             

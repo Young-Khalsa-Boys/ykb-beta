@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
 import { ChevronRight, Heart, Users, Map } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
 import heroBg from '../assets/herosectionbg.jpeg';
 import { useEffect } from 'react';
+import type { ImageMetadata } from 'astro';
 
 // For the carousel
 const carouselPhotos = [
@@ -15,6 +15,7 @@ const carouselPhotos = [
 
 export default function Home() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const heroBgUrl = typeof heroBg === 'string' ? heroBg : (heroBg as ImageMetadata).src;
 
   useEffect(() => {
     if (emblaApi) {
@@ -33,7 +34,7 @@ export default function Home() {
         {/* Background Image */}
         <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroBg})` }}
+          style={{ backgroundImage: `url(${heroBgUrl})` }}
         >
           {/* Solid Dark Warm Overlay */}
           <div className="absolute inset-0 bg-[#19221C]/65 mix-blend-multiply" />
@@ -61,7 +62,7 @@ export default function Home() {
           
           {/* About Us Card */}
           <div className="col-span-1 rounded-md bg-[#FFFDF9] border border-[#EADFC9] hover:border-slate-400 overflow-hidden transition-all group">
-            <Link to="/about" className="flex items-center justify-between p-6 h-full text-slate-800 hover:text-[var(--ykb-blue)] transition-colors">
+            <a href="/about" className="flex items-center justify-between p-6 h-full text-slate-800 hover:text-[var(--ykb-blue)] transition-colors">
               <div className="flex items-center gap-3">
                 <div className="p-3 bg-[var(--ykb-blue)]/5 rounded border border-[var(--ykb-blue)]/10 text-[var(--ykb-blue)] group-hover:bg-[var(--ykb-blue)] group-hover:text-white transition-colors">
                   <Map className="w-6 h-6" />
@@ -69,12 +70,12 @@ export default function Home() {
                 <span className="font-serif font-bold text-lg text-[#2B2317]">About Us</span>
               </div>
               <ChevronRight className="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </a>
           </div>
 
           {/* Members Card */}
           <div className="col-span-1 rounded-md bg-[#FFFDF9] border border-[#EADFC9] hover:border-slate-400 overflow-hidden transition-all group">
-            <Link to="/members" className="flex items-center justify-between p-6 h-full text-slate-800 hover:text-[var(--ykb-green)] transition-colors">
+            <a href="/members" className="flex items-center justify-between p-6 h-full text-slate-800 hover:text-[var(--ykb-green)] transition-colors">
               <div className="flex items-center gap-3">
                 <div className="p-3 bg-[var(--ykb-green)]/5 rounded border border-[var(--ykb-green)]/10 text-[var(--ykb-green)] group-hover:bg-[var(--ykb-green)] group-hover:text-white transition-colors">
                   <Users className="w-6 h-6" />
@@ -82,12 +83,12 @@ export default function Home() {
                 <span className="font-serif font-bold text-lg text-[#2B2317]">Members</span>
               </div>
               <ChevronRight className="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </a>
           </div>
 
           {/* Projects Card */}
           <div className="col-span-1 rounded-md bg-[#FFFDF9] border border-[#EADFC9] hover:border-slate-400 overflow-hidden transition-all group">
-            <Link to="/projects" className="flex items-center justify-between p-6 h-full text-slate-800 hover:text-[var(--ykb-orange)] transition-colors">
+            <a href="/projects" className="flex items-center justify-between p-6 h-full text-slate-800 hover:text-[var(--ykb-orange)] transition-colors">
               <div className="flex items-center gap-3">
                 <div className="p-3 bg-[var(--ykb-orange)]/5 rounded border border-[var(--ykb-orange)]/10 text-[var(--ykb-orange)] group-hover:bg-[var(--ykb-orange)] group-hover:text-white transition-colors">
                   <Heart className="w-6 h-6" />
@@ -95,7 +96,7 @@ export default function Home() {
                 <span className="font-serif font-bold text-lg text-[#2B2317]">Projects</span>
               </div>
               <ChevronRight className="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </a>
           </div>
 
           {/* Donate Card */}

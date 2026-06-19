@@ -7,6 +7,7 @@ const fundraisers: EventItem[] = [
     category: "Fundraiser",
     date: "August 2026",
     location: "Test Location, New Jersey",
+    impact: "Testing multi-fundraiser page layout",
     images: [
       {
         src: "/photocarousel/ykb_c4-pres3.jpeg",
@@ -19,7 +20,6 @@ const fundraisers: EventItem[] = [
     ],
     summary:
       "This test fundraiser is included to check how multiple fundraiser cards read on the page. It can be removed or replaced when the next real fundraiser is ready.",
-    impact: "Testing multi-fundraiser page layout",
   },
 ];
 

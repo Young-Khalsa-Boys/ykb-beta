@@ -4,7 +4,6 @@ const navLinks = [
   { name: 'Members', path: '/members' },
   { name: 'Projects', path: '/projects' },
   { name: 'Fundraisers', path: '/fundraisers' },
-  { name: 'Events', path: '/events' },
 ];
 
 interface NavigationProps {

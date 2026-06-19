@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export interface EventItem {
   id: string;
@@ -27,6 +27,18 @@ function EventPhotoCarousel({ event }: { event: EventItem }) {
   const activeImage = event.images[activeIndex] ?? event.images[0];
   const hasMultipleImages = event.images.length > 1;
 
+  useEffect(() => {
+    if (!hasMultipleImages) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % event.images.length);
+    }, 4500);
+
+    return () => window.clearInterval(timer);
+  }, [event.images.length, hasMultipleImages]);
+
   if (!activeImage) {
     return <div className="aspect-[16/10] bg-[#EADFC9]" aria-label={`Photo area for ${event.name}`} />;
   }
@@ -54,7 +66,7 @@ function EventPhotoCarousel({ event }: { event: EventItem }) {
             <button
               type="button"
               onClick={goToPrevious}
-              className="font-sans text-sm font-bold uppercase tracking-widest hover:text-[#F7B267]"
+              className="font-sans text-xs md:text-sm font-bold uppercase tracking-widest hover:text-[#F7B267]"
             >
               Previous
             </button>
@@ -64,7 +76,7 @@ function EventPhotoCarousel({ event }: { event: EventItem }) {
             <button
               type="button"
               onClick={goToNext}
-              className="font-sans text-sm font-bold uppercase tracking-widest hover:text-[#F7B267]"
+              className="font-sans text-xs md:text-sm font-bold uppercase tracking-widest hover:text-[#F7B267]"
             >
               Next
             </button>
@@ -115,12 +127,15 @@ export function EventListing({ eyebrow, title, intro, items, emptyMessage }: Eve
           </div>
         </div>
       ) : (
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 space-y-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 space-y-12">
           {items.map((item) => (
-            <article key={item.id} className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-16 items-start">
+            <article
+              key={item.id}
+              className="bg-[#FFFDF9] border border-[#EADFC9] shadow-sm p-5 md:p-8 grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start"
+            >
               <EventPhotoCarousel event={item} />
 
-              <div className="lg:pt-8">
+              <div className="lg:pt-4">
                 <p className="text-[var(--ykb-orange)] text-sm font-bold uppercase tracking-widest mb-4">{item.category}</p>
                 <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#2B2317] leading-tight mb-8">
                   {item.name}

@@ -1,0 +1,161 @@
+---
+const {
+  eyebrow,
+  title,
+  intro,
+  items = [],
+  emptyMessage = 'COMING SOON!!!',
+} = Astro.props;
+---
+
+<div class="min-h-screen bg-[#FAF6EE] pt-16 pb-24">
+  <section class="bg-[#FFFDF9] border-y border-[#EADFC9]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <p class="text-[var(--ykb-green)] font-sans font-bold uppercase tracking-widest text-sm mb-5">
+        {eyebrow}
+      </p>
+      <div class="grid lg:grid-cols-[0.85fr_1.15fr] gap-8 lg:gap-14 items-end">
+        <h1 class="text-4xl md:text-6xl font-serif font-bold text-[#2B2317] leading-tight">{title}</h1>
+        <p class="text-xl md:text-2xl text-slate-700 leading-relaxed font-serif">{intro}</p>
+      </div>
+    </div>
+  </section>
+
+  {
+    items.length === 0 ? (
+      <div class="max-w-4xl mx-auto px-4 text-center py-16">
+        <div class="bg-[#FFFDF9] border border-[#EADFC9] py-14 px-6 font-serif font-bold text-xl text-[var(--ykb-orange)] tracking-widest">
+          {emptyMessage}
+        </div>
+      </div>
+    ) : (
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 space-y-12">
+        {items.map((item) => {
+          const firstImage = item.images[0];
+          const hasMultipleImages = item.images.length > 1;
+
+          return (
+            <article class="bg-[#FFFDF9] border border-[#EADFC9] shadow-sm p-5 md:p-8 grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start">
+              <div class="space-y-4" data-event-carousel data-images={JSON.stringify(item.images)}>
+                {firstImage ? (
+                  <div class="relative overflow-hidden bg-[#FFFDF9]">
+                    <img
+                      src={firstImage.src}
+                      alt={firstImage.alt}
+                      class="aspect-[16/10] w-full object-cover"
+                      loading="lazy"
+                      data-event-active-image
+                    />
+
+                    {hasMultipleImages && (
+                      <div class="absolute inset-x-0 bottom-0 flex items-center justify-between bg-[#19221C]/75 px-4 py-3 text-white">
+                        <button
+                          type="button"
+                          class="font-sans text-xs md:text-sm font-bold uppercase tracking-widest hover:text-[#F7B267]"
+                          data-event-prev
+                        >
+                          Previous
+                        </button>
+                        <p class="text-sm font-semibold" data-event-counter>
+                          1 / {item.images.length}
+                        </p>
+                        <button
+                          type="button"
+                          class="font-sans text-xs md:text-sm font-bold uppercase tracking-widest hover:text-[#F7B267]"
+                          data-event-next
+                        >
+                          Next
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div class="aspect-[16/10] bg-[#EADFC9]" aria-label={`Photo area for ${item.name}`}></div>
+                )}
+
+                {hasMultipleImages && (
+                  <div class="flex gap-3 overflow-x-auto pb-2">
+                    {item.images.map((image, index) => (
+                      <button
+                        type="button"
+                        class:list={[
+                          'h-20 w-28 flex-shrink-0 overflow-hidden border-2',
+                          index === 0 ? 'border-[var(--ykb-orange)]' : 'border-transparent',
+                        ]}
+                        aria-label={`Show photo ${index + 1} for ${item.name}`}
+                        data-event-thumb={index}
+                      >
+                        <img src={image.src} alt="" class="h-full w-full object-cover" loading="lazy" />
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div class="lg:pt-4">
+                <p class="text-[var(--ykb-orange)] text-sm font-bold uppercase tracking-widest mb-4">{item.category}</p>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-[#2B2317] leading-tight mb-8">
+                  {item.name}
+                </h2>
+
+                <dl class="grid sm:grid-cols-3 lg:grid-cols-1 gap-5 border-y border-[#EADFC9] py-6 mb-8">
+                  <div>
+                    <dt class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Event Date(s)</dt>
+                    <dd class="font-semibold text-[#2B2317]">{item.date}</dd>
+                  </div>
+                  <div>
+                    <dt class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Event Location</dt>
+                    <dd class="font-semibold text-[#2B2317]">{item.location}</dd>
+                  </div>
+                  <div>
+                    <dt class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Our Impact</dt>
+                    <dd class="font-semibold text-[#2B2317]">{item.impact}</dd>
+                  </div>
+                </dl>
+
+                <p class="text-lg text-slate-700 leading-relaxed">{item.summary}</p>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    )
+  }
+</div>
+
+<script>
+  document.querySelectorAll('[data-event-carousel]').forEach((carousel) => {
+    const images = JSON.parse(carousel.getAttribute('data-images') || '[]');
+    const activeImage = carousel.querySelector('[data-event-active-image]');
+    const counter = carousel.querySelector('[data-event-counter]');
+    const thumbs = [...carousel.querySelectorAll('[data-event-thumb]')];
+    let activeIndex = 0;
+
+    if (!activeImage || images.length < 2) {
+      return;
+    }
+
+    const showImage = (nextIndex) => {
+      activeIndex = (nextIndex + images.length) % images.length;
+      activeImage.src = images[activeIndex].src;
+      activeImage.alt = images[activeIndex].alt;
+
+      if (counter) {
+        counter.textContent = `${activeIndex + 1} / ${images.length}`;
+      }
+
+      thumbs.forEach((thumb, index) => {
+        thumb.classList.toggle('border-[var(--ykb-orange)]', index === activeIndex);
+        thumb.classList.toggle('border-transparent', index !== activeIndex);
+      });
+    };
+
+    carousel.querySelector('[data-event-prev]')?.addEventListener('click', () => showImage(activeIndex - 1));
+    carousel.querySelector('[data-event-next]')?.addEventListener('click', () => showImage(activeIndex + 1));
+    thumbs.forEach((thumb, index) => {
+      thumb.addEventListener('click', () => showImage(index));
+    });
+
+    window.setInterval(() => showImage(activeIndex + 1), 4500);
+  });
+</script>

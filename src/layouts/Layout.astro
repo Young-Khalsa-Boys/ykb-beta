@@ -3,25 +3,51 @@ import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import '../index.css';
 
-const { title = "Young Khalsa Boys" } = Astro.props;
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Young Khalsa Boys',
+  description = 'Young Khalsa Boys is a boy-led Sikh organization focused on seva, leadership, brotherhood, and community service.',
+} = Astro.props;
+
 const currentPath = Astro.url.pathname;
+const siteUrl = Astro.site ?? 'https://youngkhalsaboys.com';
+const canonicalUrl = new URL(currentPath, siteUrl);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
   <head>
     <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+
+    <meta name="theme-color" content="#19221C" />
+    <meta name="description" content={description} />
+
     <link rel="icon" type="image/png" href="/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href={canonicalUrl} />
+
     <title>{title}</title>
   </head>
-  <body>
-    <div class="min-h-screen flex flex-col font-sans">
+
+  <body class="min-h-screen bg-[#FAF6EE] text-[#2B2317] antialiased">
+    <div class="min-h-screen flex flex-col">
+
       <Navigation currentPath={currentPath} />
-      <main class="flex-grow">
+
+      <main id="main-content" class="flex-1">
         <slot />
       </main>
+
       <Footer />
+
     </div>
   </body>
 </html>

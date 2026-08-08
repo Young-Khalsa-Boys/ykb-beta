@@ -1,42 +1,55 @@
 ---
 const navLinks = [
-  { name: 'Home', path: '/' },
   { name: 'About', path: '/about' },
   { name: 'Members', path: '/members' },
   { name: 'Projects', path: '/projects' },
   { name: 'Fundraisers', path: '/fundraisers' },
 ];
 
-const normalizePath = (path) => path.replace(/\/$/, '') || '/';
+const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';
 const activePath = normalizePath(Astro.props.currentPath || '/');
 ---
 
-<header class="sticky top-0 z-50 w-full bg-[#FFFDF9] border-b border-[#EADFC9] shadow-sm">
+<header class="sticky top-0 z-50 w-full border-b border-ykb-border/80 bg-ykb-card/95 backdrop-blur-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-20">
-      <a href="/" class="flex items-center gap-3 group">
+    <div class="flex h-[72px] items-center justify-between">
+
+      <!-- Brand -->
+      <a
+        href="/"
+        class="group flex items-center gap-3"
+        aria-label="Young Khalsa Boys home"
+      >
         <img
           src="/logo.png"
-          alt="Young Khalsa Boys Logo"
-          class="h-12 w-auto object-contain transition-transform group-hover:scale-102"
+          alt=""
+          width="44"
+          height="44"
+          class="h-11 w-11 object-contain transition-transform duration-200 group-hover:scale-[1.03]"
         />
-        <span class="font-serif font-bold text-xl text-[#2B2317] tracking-tight hidden sm:block">
+
+        <span class="hidden sm:block font-serif text-lg font-bold tracking-tight text-[#2B2317]">
           Young Khalsa Boys
         </span>
       </a>
 
-      <nav class="hidden md:flex items-center space-x-2">
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
         {
           navLinks.map((link) => {
             const isActive = activePath === normalizePath(link.path);
+
             return (
               <a
                 href={link.path}
+                aria-current={isActive ? 'page' : undefined}
                 class:list={[
-                  'px-2.5 py-1.5 text-sm font-semibold transition-all duration-200 border-b-2',
+                  'relative px-3 py-2 text-sm font-medium transition-colors duration-200',
+                  'after:absolute after:bottom-0 after:left-3 after:right-3 after:h-px',
+                  'after:origin-center after:transition-transform after:duration-200',
                   isActive
-                    ? 'border-[var(--ykb-blue)] text-[var(--ykb-blue)]'
-                    : 'border-transparent text-slate-600 hover:text-slate-900 hover:border-[#EADFC9]',
+                    ? 'text-ykb-blue after:scale-x-100 after:bg-ykb-blue'
+                    : 'text-slate-600 after:scale-x-0 after:bg-ykb-border hover:text-[#2B2317] hover:after:scale-x-100',
                 ]}
               >
                 {link.name}
@@ -49,22 +62,121 @@ const activePath = normalizePath(Astro.props.currentPath || '/');
           href="https://givebutter.com/young-khalsa-boys-fundraiser-bq2wmc"
           target="_blank"
           rel="noopener noreferrer"
-          class="px-4 py-2 rounded bg-[var(--ykb-orange)] hover:bg-orange-600 text-white text-sm font-bold shadow-sm transition-all duration-200 ml-3 flex items-center justify-center border border-transparent"
+          class="ml-4 inline-flex items-center justify-center rounded-md bg-ykb-orange px-4 py-2 text-sm font-bold text-white shadow-sm transition-colors duration-200 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-ykb-orange/40"
         >
           Donate
         </a>
       </nav>
 
-      <div class="md:hidden flex items-center">
+      <!-- Mobile -->
+      <div class="md:hidden flex items-center gap-2">
+
         <a
           href="https://givebutter.com/young-khalsa-boys-fundraiser-bq2wmc"
           target="_blank"
           rel="noopener noreferrer"
-          class="px-4 py-2 bg-[var(--ykb-orange)] hover:bg-orange-600 text-white rounded text-sm font-bold shadow-sm active:scale-98 transition-transform"
+          class="inline-flex items-center justify-center rounded-md bg-ykb-orange px-3.5 py-2 text-sm font-bold text-white shadow-sm"
         >
           Donate
         </a>
+
+        <button
+          type="button"
+          id="mobile-menu-button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-md text-[#2B2317] hover:bg-ykb-cream transition-colors"
+        >
+          <svg
+            id="menu-open-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="21"
+            height="21"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          >
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+
+          <svg
+            id="menu-close-icon"
+            class="hidden"
+            xmlns="http://www.w3.org/2000/svg"
+            width="21"
+            height="21"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          >
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
       </div>
+
     </div>
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="hidden border-t border-ykb-border py-4 md:hidden"
+    >
+      <nav class="flex flex-col" aria-label="Mobile navigation">
+        <a
+          href="/"
+          class:list={[
+            'px-3 py-3 text-sm font-medium rounded-md transition-colors',
+            activePath === '/'
+              ? 'bg-ykb-cream text-ykb-blue'
+              : 'text-slate-700 hover:bg-ykb-cream',
+          ]}
+        >
+          Home
+        </a>
+
+        {
+          navLinks.map((link) => {
+            const isActive = activePath === normalizePath(link.path);
+
+            return (
+              <a
+                href={link.path}
+                aria-current={isActive ? 'page' : undefined}
+                class:list={[
+                  'px-3 py-3 text-sm font-medium rounded-md transition-colors',
+                  isActive
+                    ? 'bg-ykb-cream text-ykb-blue'
+                    : 'text-slate-700 hover:bg-ykb-cream',
+                ]}
+              >
+                {link.name}
+              </a>
+            );
+          })
+        }
+      </nav>
+    </div>
+
   </div>
 </header>
+
+<script>
+  const button = document.querySelector('#mobile-menu-button');
+  const menu = document.querySelector('#mobile-menu');
+  const openIcon = document.querySelector('#menu-open-icon');
+  const closeIcon = document.querySelector('#menu-close-icon');
+
+  button?.addEventListener('click', () => {
+    const isOpen = button.getAttribute('aria-expanded') === 'true';
+
+    button.setAttribute('aria-expanded', String(!isOpen));
+    menu?.classList.toggle('hidden', isOpen);
+    openIcon?.classList.toggle('hidden', !isOpen);
+    closeIcon?.classList.toggle('hidden', isOpen);
+  });
+</script>

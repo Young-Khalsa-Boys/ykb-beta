@@ -1,143 +1,289 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const colorMap = {
-  'var(--ykb-blue)': { bg: '#0756a1', text: '#0756a1' },
-  'var(--ykb-green)': { bg: '#3D8C1A', text: '#3D8C1A' },
-  'var(--ykb-orange)': { bg: '#E86D1A', text: '#E86D1A' },
-};
-
 const pillars = [
   {
     letter: 'L',
     title: 'Loyalty',
     desc: 'Fostering commitment to faith, brotherhood, values, and community, standing by one another with integrity and trust.',
-    color: 'var(--ykb-blue)',
+    color: '#0756A1',
   },
   {
     letter: 'E',
     title: 'Empathy',
     desc: 'Cultivating compassion and understanding for others through service to all, recognizing the dignity and humanity in every person.',
-    color: 'var(--ykb-green)',
+    color: '#3D8C1A',
   },
   {
     letter: 'A',
     title: 'Advocacy',
     desc: 'Empowering youth to stand up for justice, speak for those without a voice, and represent Sikh values with integrity and courage.',
-    color: 'var(--ykb-orange)',
+    color: '#E86D1A',
   },
   {
     letter: 'D',
     title: 'Discipline',
     desc: 'Instilling self-discipline, responsibility, and commitment in thought and action, guided by the values of Sikhi and personal accountability.',
-    color: 'var(--ykb-blue)',
+    color: '#0756A1',
   },
   {
     letter: 'E',
     title: 'Empowerment',
-    desc: 'Providing mentorship and leadership opportunities that empower young boys to believe in themselves and their ability to create positive change, developing into confident, accountable leaders.',
-    color: 'var(--ykb-green)',
+    desc: 'Providing mentorship and leadership opportunities that empower young boys to believe in themselves and their ability to create positive change.',
+    color: '#3D8C1A',
   },
   {
     letter: 'R',
     title: 'Resilience',
     desc: 'Building mental, emotional, and moral strength to face challenges with courage, perseverance, and humility.',
-    color: 'var(--ykb-orange)',
+    color: '#E86D1A',
   },
   {
     letter: 'S',
-    title: 'Seva (service)',
+    title: 'Seva',
     desc: 'Placing selfless service at the heart of all actions, fostering a lasting dedication to serving humanity beyond self-interest.',
-    color: 'var(--ykb-blue)',
+    color: '#0756A1',
   },
 ];
 ---
 
 <Layout title="About Us - Young Khalsa Boys">
-  <div class="min-h-screen bg-[#FAF6EE] pt-20 pb-24">
-  <div class="bg-[#0756a1] text-white py-20 mb-16 px-4 border-y border-[#EADFC9] shadow-sm">
-    <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-4xl md:text-5xl font-serif font-bold mb-6">About Our Organization</h1>
-      <p class="text-lg text-blue-50/90 max-w-2xl mx-auto">
-        Discover who we are, where we come from, and the core tenets that drive our mission forward.
-      </p>
-    </div>
-  </div>
+  <div class="bg-[#FAF6EE]">
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
-    <section class="bg-[#FFFDF9] rounded-lg p-8 md:p-12 shadow-sm border border-[#EADFC9] relative overflow-hidden">
-      <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-[var(--ykb-orange)] font-sans font-bold tracking-widest uppercase text-sm mb-4">Our Mission</h2>
-        <p class="text-2xl md:text-3xl font-serif font-medium text-[#2B2317] leading-relaxed">
-          Young Khalsa Boys empowers Sikh boys to grow into the next generation of compassionate leaders through boy-led community service initiatives and mentorship.
-        </p>
+    <!-- PAGE INTRO -->
+    <section class="border-b border-[#EADFC9]">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16 md:py-20">
+
+        <div class="grid md:grid-cols-[1fr_0.65fr] gap-10 md:gap-20 items-end">
+
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ykb-blue)] mb-4">
+              About Young Khalsa Boys
+            </p>
+
+            <h1 class="text-4xl md:text-6xl font-serif font-bold text-[#2B2317] leading-[1.05]">
+              Who we are.
+            </h1>
+          </div>
+
+          <p class="text-base md:text-lg text-slate-600 leading-7 md:pb-1">
+            A brotherhood of Sikh boys committed to serving our communities
+            and growing into compassionate leaders.
+          </p>
+
+        </div>
+
       </div>
     </section>
 
-    <div class="grid md:grid-cols-2 gap-12">
-      <section class="bg-[#FFFDF9] p-8 rounded-lg shadow-sm border border-[#EADFC9]">
-        <div class="w-12 h-12 bg-[var(--ykb-blue)]/5 rounded border border-[var(--ykb-blue)]/10 flex items-center justify-center mb-6 text-[var(--ykb-blue)]">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
-          </svg>
-        </div>
-        <h3 class="text-2xl font-serif font-bold text-[#2B2317] mb-4">Who We Are</h3>
-        <p class="text-slate-700 leading-relaxed font-sans">
-          We are a registered 501(c)(3) nonprofit organization, led by Sikh boys with a powerful vision: to take an active role in serving our local communities while building lifelong bonds of brotherhood.
-        </p>
-      </section>
 
-      <section class="bg-[#3D8C1A] text-white p-8 rounded-lg shadow-sm border border-[#2e6b12]">
-        <div class="w-12 h-12 bg-white/10 rounded flex items-center justify-center mb-6">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
-          </svg>
-        </div>
-        <h3 class="text-2xl font-serif font-bold mb-4">The Meaning of Seva</h3>
-        <p class="text-green-50/90 leading-relaxed font-sans">
-          <strong>Seva</strong> (also spelled Sewa) is a Sanskrit word meaning "selfless service."
-          In Sikhism, it is an essential principle and a moral duty. It implies performing an act
-          of service without any thought for reward or personal gain. Through Seva, we learn humility,
-          empathy, and the value of contributing to the greater good of humanity.
-        </p>
-      </section>
-    </div>
+    <!-- MISSION -->
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16 md:py-20">
 
-    <section class="max-w-4xl mx-auto pb-12">
-      <div class="text-center mb-12">
-        <h2 class="text-[var(--ykb-blue)] text-sm font-sans font-bold uppercase tracking-widest mb-2">Our Foundation</h2>
-        <h3 class="text-3xl font-serif font-bold text-[#2B2317]">Core Pillars</h3>
+      <div class="grid md:grid-cols-[0.3fr_1fr] gap-8 md:gap-16">
+
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ykb-orange)]">
+            Our Mission
+          </p>
+        </div>
+
+        <div class="max-w-4xl">
+          <p class="text-2xl md:text-4xl font-serif leading-[1.35] text-[#2B2317]">
+            Young Khalsa Boys empowers Sikh boys to grow into the next
+            generation of compassionate leaders through boy-led community
+            service initiatives and mentorship.
+          </p>
+        </div>
+
       </div>
-      <div class="prose prose-lg text-slate-700 max-w-none">
-        <p class="text-center font-sans leading-relaxed">
-          Sikhism, founded in the 15th century in the Punjab region of India, is a monotheistic religion
-          centered on the belief in one creator. It emphasizes equality, truthful living, and social justice.
-          Our organization is fundamentally guided by the following seven core pillars rooted in the Sikh principles of selfless-service:
-        </p>
-        <div class="flex flex-col gap-6 mt-12">
+
+    </section>
+
+
+    <!-- WHO WE ARE / SEVA -->
+    <section class="border-y border-[#EADFC9] bg-[#FFFDF9]">
+
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10">
+
+        <div class="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#EADFC9]">
+
+          <article class="py-14 md:py-16 md:pr-14">
+
+            <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ykb-blue)] mb-5">
+              Who We Are
+            </p>
+
+            <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2B2317] leading-tight">
+              Boys serving their communities.
+            </h2>
+
+            <p class="mt-5 text-base text-slate-600 leading-7">
+              We are a registered 501(c)(3) nonprofit organization, led by
+              Sikh boys with a powerful vision: to take an active role in
+              serving our local communities while building lifelong bonds
+              of brotherhood.
+            </p>
+
+          </article>
+
+
+          <article class="py-14 md:py-16 md:pl-14">
+
+            <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ykb-green)] mb-5">
+              Seva
+            </p>
+
+            <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2B2317] leading-tight">
+              Service without self-interest.
+            </h2>
+
+            <p class="mt-5 text-base text-slate-600 leading-7">
+              <strong>Seva</strong> (also spelled Sewa) is a Sanskrit word
+              meaning "selfless service." In Sikhism, it is an essential
+              principle and a moral duty. It means performing an act of
+              service without thought for reward or personal gain.
+            </p>
+
+            <p class="mt-4 text-base text-slate-600 leading-7">
+              Through Seva, we learn humility, empathy, and the value of
+              contributing to the greater good of humanity.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SIKHI CONTEXT -->
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16 md:py-20">
+
+      <div class="grid md:grid-cols-[0.3fr_1fr] gap-8 md:gap-16">
+
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ykb-blue)]">
+            Our Foundation
+          </p>
+        </div>
+
+        <div class="max-w-3xl">
+
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#2B2317]">
+            Rooted in Sikh values.
+          </h2>
+
+          <p class="mt-6 text-base md:text-lg text-slate-600 leading-8">
+            Sikhism, founded in the 15th century in the Punjab region of
+            India, is centered on the belief in one creator and emphasizes
+            equality, truthful living, and social justice.
+          </p>
+
+          <p class="mt-4 text-base md:text-lg text-slate-600 leading-8">
+            These principles shape how we approach leadership, brotherhood,
+            and service. They are reflected in the seven pillars that guide
+            Young Khalsa Boys.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PILLARS -->
+    <section class="border-y border-[#EADFC9] bg-[#FFFDF9]">
+
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16 md:py-20">
+
+        <div class="grid md:grid-cols-[0.3fr_1fr] gap-8 md:gap-16 mb-10">
+
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ykb-orange)]">
+              What guides us
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#2B2317]">
+              The seven pillars.
+            </h2>
+
+            <p class="mt-4 max-w-2xl text-base text-slate-600 leading-7">
+              The principles we look to as we serve, lead, and grow together.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="border-t border-[#EADFC9]">
+
           {
-            pillars.map((pillar) => {
-              const colors = colorMap[pillar.color] || { bg: '#666', text: '#666' };
+            pillars.map((pillar) => (
+              <article
+                class="group grid grid-cols-[42px_1fr] md:grid-cols-[60px_180px_1fr] gap-4 md:gap-8 items-start py-7 border-b border-[#EADFC9] transition-colors hover:bg-[#FAF6EE] px-3 -mx-3"
+              >
 
-              return (
-                <div class="flex items-start md:items-center flex-col md:flex-row gap-6 bg-[#FFFDF9] p-6 md:p-8 rounded-lg border border-[#EADFC9] shadow-sm">
-                  <div
-                    class="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded flex items-center justify-center text-4xl md:text-5xl font-serif font-black text-white shadow-sm"
-                    style={`background-color: ${colors.bg}`}
-                  >
-                    {pillar.letter}
-                  </div>
-                  <div>
-                    <h4 class="font-serif font-bold text-2xl mb-2 animate-none" style={`color: ${colors.text}`}>{pillar.title}</h4>
-                    <p class="text-slate-700 leading-relaxed m-0 font-sans">{pillar.desc}</p>
-                  </div>
-                </div>
-              );
-            })
+                <span
+                  class="text-3xl md:text-4xl font-serif font-bold leading-none"
+                  style={`color: ${pillar.color}`}
+                >
+                  {pillar.letter}
+                </span>
+
+                <h3 class="text-lg md:text-xl font-serif font-bold text-[#2B2317]">
+                  {pillar.title}
+                </h3>
+
+                <p class="col-start-2 md:col-start-3 text-sm md:text-base text-slate-600 leading-7">
+                  {pillar.desc}
+                </p>
+
+              </article>
+            ))
           }
+
         </div>
+
       </div>
+
     </section>
-  </div>
+
+
+    <!-- CLOSING -->
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16 md:py-20">
+
+      <div class="border-t border-[#EADFC9] pt-10 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+
+        <div>
+
+          <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ykb-orange)] mb-4">
+            Young Khalsa Boys
+          </p>
+
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#2B2317]">
+            Built around brotherhood.<br />
+            Grounded in seva.
+          </h2>
+
+        </div>
+
+        <a
+          href="/projects"
+          class="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-[0.12em] text-[#0756A1] hover:text-[#05447F] transition-colors"
+        >
+          See our work
+          <span aria-hidden="true" class="text-lg">→</span>
+        </a>
+
+      </div>
+
+    </section>
+
   </div>
 </Layout>

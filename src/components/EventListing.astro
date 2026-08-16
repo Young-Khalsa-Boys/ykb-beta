@@ -14,7 +14,7 @@ const {
   <section class="border-b border-[#EADFC9] bg-[#FAF6EE]">
     <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16 md:py-20">
 
-      <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ykb-blue)] mb-4">
+      <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-ykb-blue)] mb-4">
         {eyebrow}
       </p>
 
@@ -116,7 +116,7 @@ const {
                             class:list={[
                               'h-16 w-24 flex-shrink-0 overflow-hidden border-2 transition-opacity',
                               index === 0
-                                ? 'border-[var(--ykb-orange)]'
+                                ? 'border-[var(--color-ykb-orange)]'
                                 : 'border-transparent opacity-60 hover:opacity-100',
                             ]}
                             aria-label={`Show photo ${index + 1} for ${item.name}`}
@@ -140,7 +140,7 @@ const {
                   <!-- INFORMATION -->
                   <div class="lg:pt-1">
 
-                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ykb-orange)] mb-5">
+                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-ykb-orange)] mb-5">
                       {item.category}
                     </p>
 
@@ -174,7 +174,7 @@ const {
 
 
                     <!-- IMPACT -->
-                    <div class="mt-9 border-l-2 border-[var(--ykb-orange)] pl-5">
+                    <div class="mt-9 border-l-2 border-[var(--color-ykb-orange)] pl-5">
 
                       <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">
                         Impact
@@ -235,7 +235,7 @@ const {
 
       thumbs.forEach((thumb, index) => {
         thumb.classList.toggle(
-          'border-[var(--ykb-orange)]',
+          'border-[var(--color-ykb-orange)]',
           index === activeIndex
         );
 

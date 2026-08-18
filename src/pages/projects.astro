@@ -1,8 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Projects from '../pages_react/Projects.tsx';
+import EventListing from '../components/EventListing.astro';
+
+const projects = [
+  {
+    id: "ykb-langar-in-the-streets-2026",
+    name: "Langar In The Streets",
+    category: "Project",
+    date: "July 19-20, 2026",
+    location: "Salvation Army, Passaic, New Jersey",
+    images: [
+      {
+        src: '/photocarousel/ykb_c2-pres1.jpeg',
+      },
+    ],
+    summary:
+      "Through Langar in the Streets, we provided 100+ families across Passaic, Paterson, and Clifton with essential food and supplies. Thank you to everyone who helped make this seva possible!",
+    impact: "Donated food to 100+ families across Passaic, Paterson, and Clifton.",
+  },
+];
 ---
 
 <Layout title="Projects - Young Khalsa Boys">
-  <Projects />
+  <EventListing
+    eyebrow="Our Projects"
+    title="Seva in Action"
+    intro="See the service projects Young Khalsa Boys is building with local partners, families, and community members."
+    items={projects}
+  />
 </Layout>

@@ -1,36 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
 @import "tailwindcss";
 
 @theme {
   --color-ykb-green: #50ad21;
   --color-ykb-orange: #ff7e25;
   --color-ykb-blue: #0756a1;
-  --color-ykb-cream: #FAF6EE;
-  --color-ykb-card: #FFFDF9;
-  --color-ykb-border: #EADFC9;
-  --color-ykb-dark: #19221C;
-  
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-serif: 'Merriweather', Georgia, serif;
+
+  --color-ykb-cream: #faf6ee;
+  --color-ykb-card: #fffdf9;
+  --color-ykb-border: #eadfc9;
+  --color-ykb-dark: #19221c;
+
+  --color-ykb-text: #2b2317;
+  --color-ykb-muted: #64707a;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Merriweather", Georgia, serif;
 }
 
 @layer base {
-  :root {
-    --ykb-green: #50ad21;
-    --ykb-orange: #ff7e25;
-    --ykb-blue: #0756a1;
-    --ykb-cream: #FAF6EE;
-    --ykb-card: #FFFDF9;
-    --ykb-border: #EADFC9;
-    --ykb-dark: #19221C;
+  html {
+    scroll-behavior: smooth;
   }
-  
+
   body {
-    @apply bg-[#FAF6EE] text-slate-800 antialiased font-sans;
     margin: 0;
+    background: var(--color-ykb-cream);
+    color: var(--color-ykb-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-bold tracking-tight text-[#2B2317];
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--color-ykb-text);
+  }
+
+  a {
+    text-underline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-ykb-orange);
+    color: white;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ykb-blue);
+    outline-offset: 3px;
   }
 }

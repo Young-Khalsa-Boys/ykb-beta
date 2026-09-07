@@ -1,5 +1,20 @@
 ---
 const year = new Date().getFullYear();
+
+let initialCommitSha = '015e605';
+try {
+  const res = await fetch('https://api.github.com/repos/Young-Khalsa-Boys/ykb-beta/commits?per_page=1', {
+    headers: { 'User-Agent': 'Astro-YKB-Site' },
+  });
+  if (res.ok) {
+    const data = await res.json();
+    if (Array.isArray(data) && data.length > 0 && data[0]?.sha) {
+      initialCommitSha = data[0].sha.substring(0, 7);
+    }
+  }
+} catch {
+  // Use fallback initialCommitSha
+}
 ---
 
 <footer class="bg-[#19221C] text-[#D4CDC3] mt-auto">
@@ -84,7 +99,7 @@ const year = new Date().getFullYear();
             Built & maintained by
             &nbsp;
             <a
-              href="https://kabirsekhon.youngkhalsaboys.com"
+              href="mailto:kabsek30@bergen.org"
               class="font-semibold underline text-[#D4CDC3]/60 hover:text-[#D4CDC3] transition-colors"
             >
               Kabir Sekhon
@@ -94,12 +109,13 @@ const year = new Date().getFullYear();
           <span class="text-[#D4CDC3]/15">•</span>
 
           <a
-            href="https://opensource.youngkhalsaboys.com"
+            id="footer-commit-link"
+            href="https://github.com/Young-Khalsa-Boys/ykb-beta/"
             target="_blank"
             rel="noopener noreferrer"
             class="font-mono text-[#D4CDC3]/40 hover:text-[#D4CDC3]/70 transition-colors"
           >
-            opensource.youngkhalsaboys.com
+            Commit <span id="footer-commit-sha">{initialCommitSha}</span>
           </a>
 
         </div>
@@ -107,4 +123,24 @@ const year = new Date().getFullYear();
     </div>
 
   </div>
+
+  <script>
+    (async function updateLatestCommit() {
+      try {
+        const res = await fetch('https://api.github.com/repos/Young-Khalsa-Boys/ykb-beta/commits?per_page=1');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0 && data[0]?.sha) {
+            const sha = data[0].sha.substring(0, 7);
+            const shaEl = document.getElementById('footer-commit-sha');
+            if (shaEl) {
+              shaEl.textContent = sha;
+            }
+          }
+        }
+      } catch {
+        // Fallback remains as rendered
+      }
+    })();
+  </script>
 </footer>

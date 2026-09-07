@@ -10,14 +10,16 @@ const carouselPhotos = [
 ];
 
 const actionLinks = [
-  { title: 'About', href: '/about' },
-  { title: 'Members', href: '/members' },
-  { title: 'Projects', href: '/projects' },
-  { title: 'Fundraisers', href: '/fundraisers' },
+  { title: 'About', href: '/about', color: '#50AD21', action: 'About Us' },
+  { title: 'Members', href: '/members', color: '#FF7E25', action: 'Meet the Team' },
+  { title: 'Projects', href: '/projects', color: '#0756A1', action: 'Our Work' },
+  { title: 'Fundraisers', href: '/fundraisers', color: '#50AD21', action: 'Events & Drives' },
   {
     title: 'Donate',
     href: 'https://givebutter.com/young-khalsa-boys-fundraiser-bq2wmc',
     external: true,
+    color: '#FF7E25',
+    action: 'Support Seva',
   },
 ];
 
@@ -36,28 +38,28 @@ const heroBgUrl = heroBg.src;
         class="absolute inset-0 w-full h-full object-cover object-center"
       />
 
-      <!-- Light overall treatment so the photograph remains visible -->
-      <div class="absolute inset-0 bg-[#19221C]/25"></div>
+      <!-- Soft bottom gradient treatment so text is legible and photograph remains visible -->
+      <div class="absolute inset-0 bg-gradient-to-t from-[#19221C]/90 via-[#19221C]/35 to-black/20"></div>
 
       <div class="relative z-10 h-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 flex items-end">
 
-        <!-- Deliberate solid information panel -->
-        <div class="mb-8 md:mb-10 bg-[#19221C]/95 px-6 py-6 md:px-8 md:py-7 max-w-xl">
+        <!-- Text overlay without box -->
+        <div class="mb-10 md:mb-14 max-w-2xl">
 
           <div class="flex items-center gap-4">
 
             <img
               src="/logo.png"
               alt="Young Khalsa Boys Logo"
-              class="w-14 h-14 md:w-16 md:h-16 object-contain flex-shrink-0"
+              class="w-14 h-14 md:w-16 md:h-16 object-contain flex-shrink-0 drop-shadow-md"
             />
 
             <div>
-              <h1 class="text-3xl md:text-4xl font-serif font-bold text-white leading-tight">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white leading-tight drop-shadow-md">
                 Young Khalsa Boys
               </h1>
 
-              <p class="mt-2 text-sm md:text-base text-white/75 leading-6">
+              <p class="mt-2 text-sm sm:text-base md:text-lg text-white/90 leading-relaxed drop-shadow max-w-xl">
                 A boy-led group focused on serving humanity through
                 brotherhood, leadership, humility, and sewa.
               </p>
@@ -99,17 +101,24 @@ const heroBgUrl = heroBg.src;
               rel={link.external ? 'noopener noreferrer' : undefined}
               class="group block"
             >
-              <div class="aspect-[3/2] bg-[#FFFDF9] border border-[#EADFC9] flex flex-col items-center justify-center p-7 transition-all duration-300 group-hover:border-[#CFC0A2] group-hover:bg-white">
+              <div class="relative overflow-hidden aspect-[3/2] sm:aspect-[4/3] lg:aspect-[3/2] bg-[#FFFDF9] border border-[#EADFC9] rounded-sm flex flex-col items-center justify-center p-6 text-center transition-all duration-300 group-hover:border-[#CFC0A2] group-hover:bg-white group-hover:shadow-md group-hover:-translate-y-1">
 
-                <img
-                  src="/logo.png"
-                  alt="YKB Logo"
-                  class="h-24 w-auto object-contain opacity-90 transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
-                />
+                <!-- Stripe in YKB colors -->
+                <div class="absolute top-0 inset-x-0 h-1.5 flex">
+                  <div class="flex-1 bg-[#50AD21]"></div>
+                  <div class="flex-1 bg-[#FF7E25]"></div>
+                  <div class="flex-1 bg-[#0756A1]"></div>
+                </div>
 
-                <p class="mt-4 text-center text-xs font-bold uppercase tracking-[0.16em] text-[#2B2317] group-hover:text-[var(--color-ykb-orange)] transition-colors">
+                <p class="text-xl sm:text-2xl font-serif font-bold text-[#2B2317] group-hover:text-[var(--color-ykb-orange)] transition-colors">
                   {link.title}
+                </p>
+
+                <p
+                  class="mt-2 text-xs font-bold uppercase tracking-[0.14em] transition-colors"
+                  style={`color: ${link.color}`}
+                >
+                  {link.external ? `${link.action} ↗` : `${link.action} →`}
                 </p>
 
               </div>
@@ -139,17 +148,17 @@ const heroBgUrl = heroBg.src;
 
 
     <!-- GALLERY -->
-    <section class="bg-[#26342B] py-16 md:py-20">
+    <section class="bg-[#FAF6EE] border-t border-[#EADFC9] py-16 md:py-20">
 
       <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
 
         <div class="mb-9">
 
-          <p class="text-xs font-bold uppercase tracking-[0.15em] text-[var(--color-ykb-orange)] mb-3">
+          <p class="text-xs font-bold uppercase tracking-[0.15em] text-[#0756A1] mb-2">
             Gallery
           </p>
 
-          <h2 class="text-3xl md:text-4xl font-serif font-bold text-white">
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#2B2317]">
             Moments in Action
           </h2>
 
@@ -170,7 +179,7 @@ const heroBgUrl = heroBg.src;
               carouselPhotos.map((photo, index) => (
                 <div class="flex-[0_0_100%] min-w-0 md:flex-[0_0_70%] lg:flex-[0_0_60%] px-2">
 
-                  <div class="relative aspect-[16/9] overflow-hidden bg-[#19221C]">
+                  <div class="relative aspect-[16/9] overflow-hidden rounded-xl bg-[#FFFDF9] border border-[#EADFC9] shadow-md">
 
                     <img
                       src={photo}
@@ -187,9 +196,9 @@ const heroBgUrl = heroBg.src;
 
           </div>
 
-          <div class="hidden md:block absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-[#26342B] to-transparent pointer-events-none"></div>
+          <div class="hidden md:block absolute top-0 bottom-0 left-0 w-28 md:w-36 bg-gradient-to-r from-[#FAF6EE] to-transparent pointer-events-none z-10"></div>
 
-          <div class="hidden md:block absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-[#26342B] to-transparent pointer-events-none"></div>
+          <div class="hidden md:block absolute top-0 bottom-0 right-0 w-28 md:w-36 bg-gradient-to-l from-[#FAF6EE] to-transparent pointer-events-none z-10"></div>
 
         </div>
 

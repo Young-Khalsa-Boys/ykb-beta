@@ -1,5 +1,25 @@
 ---
+import { execSync } from 'node:child_process';
+
 const year = new Date().getFullYear();
+const repoUrl = 'https://github.com/Young-Khalsa-Boys/ykb-beta/';
+
+const getShortCommitSha = () => {
+  const envSha =
+    process.env.VERCEL_GIT_COMMIT_SHA ??
+    process.env.COMMIT_REF ??
+    process.env.GITHUB_SHA;
+
+  if (envSha) return envSha.slice(0, 7);
+
+  try {
+    return execSync('git rev-parse --short HEAD').toString().trim();
+  } catch {
+    return 'unknown';
+  }
+};
+
+const shortCommitSha = getShortCommitSha();
 ---
 
 <footer class="bg-[#19221C] text-[#D4CDC3] mt-auto">
@@ -84,7 +104,7 @@ const year = new Date().getFullYear();
             Built & maintained by
             &nbsp;
             <a
-              href="https://kabirsekhon.youngkhalsaboys.com"
+              href="mailto:kabsek30@bergen.org"
               class="font-semibold underline text-[#D4CDC3]/60 hover:text-[#D4CDC3] transition-colors"
             >
               Kabir Sekhon
@@ -94,12 +114,12 @@ const year = new Date().getFullYear();
           <span class="text-[#D4CDC3]/15">•</span>
 
           <a
-            href="https://opensource.youngkhalsaboys.com"
+            href={repoUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="font-mono text-[#D4CDC3]/40 hover:text-[#D4CDC3]/70 transition-colors"
           >
-            opensource.youngkhalsaboys.com
+            Commit {shortCommitSha}
           </a>
 
         </div>

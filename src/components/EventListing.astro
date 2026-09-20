@@ -116,7 +116,7 @@ const items = await Promise.all(rawItems.map(async (item) => {
                         <img
                           src={firstImage.src}
                           alt={`${item.name} — Young Khalsa Boys`}
-                          class="aspect-[16/10] w-full object-cover"
+                          class="aspect-[16/10] w-full object-contain"
                           loading="lazy"
                           data-event-active-image
                         />
@@ -173,7 +173,7 @@ const items = await Promise.all(rawItems.map(async (item) => {
                             <img
                               src={image.thumb || image.src}
                               alt=""
-                              class="h-full w-full object-cover"
+                              class="h-full w-full object-contain"
                               loading="lazy"
                             />
                           </button>

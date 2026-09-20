@@ -1,5 +1,6 @@
 ---
 const navLinks = [
+  { name: 'Home', path: '/' },
   { name: 'About', path: '/about' },
   { name: 'Members', path: '/members' },
   { name: 'Projects', path: '/projects' },
@@ -127,17 +128,6 @@ const activePath = normalizePath(Astro.props.currentPath || '/');
       class="hidden border-t border-ykb-border py-4 md:hidden"
     >
       <nav class="flex flex-col" aria-label="Mobile navigation">
-        <a
-          href="/"
-          class:list={[
-            'px-3 py-3 text-sm font-medium rounded-md transition-colors',
-            activePath === '/'
-              ? 'bg-ykb-cream text-ykb-blue'
-              : 'text-slate-700 hover:bg-ykb-cream',
-          ]}
-        >
-          Home
-        </a>
 
         {
           navLinks.map((link) => {

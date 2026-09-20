@@ -2,11 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import heroBg from '../assets/herosectionbg.jpeg';
 
+import { Image } from 'astro:assets';
+import fcw1 from '../assets/fundraisers/car-wash/ykb_fcw_1-grouppic1.jpg';
+import fcw7 from '../assets/fundraisers/car-wash/ykb_fcw_7-chryslerwash.jpg';
+import fcw3 from '../assets/fundraisers/car-wash/ykb_fcw_3-gurudwaraspeech.jpg';
+import c0 from '../assets/photocarousel/ykb_c0-lunch.jpeg';
+
 const carouselPhotos = [
-  '/fundraisers/carwash/ykb_fcw_1-grouppic1.jpg',
-  '/fundraisers/carwash/ykb_fcw_7-chryslerwash.jpg',
-  '/fundraisers/carwash/ykb_fcw_3-gurudwaraspeech.jpg',
-  '/photocarousel/ykb_c0-lunch.jpeg',
+  fcw1,
+  fcw7,
+  fcw3,
+  c0,
 ];
 
 const actionLinks = [
@@ -23,7 +29,10 @@ const actionLinks = [
   },
 ];
 
-const heroBgUrl = heroBg.src;
+import { getImage } from 'astro:assets';
+
+const optimizedHeroBg = await getImage({ src: heroBg, format: 'webp', width: 1600 });
+const heroBgUrl = optimizedHeroBg.src;
 ---
 
 <Layout title="Young Khalsa Boys">
@@ -181,8 +190,9 @@ const heroBgUrl = heroBg.src;
 
                   <div class="relative aspect-[16/9] overflow-hidden rounded-xl bg-[#FFFDF9] border border-[#EADFC9] shadow-md">
 
-                    <img
+                    <Image
                       src={photo}
+                      width={800}
                       alt={`YKB Gallery ${index + 1}`}
                       class="absolute inset-0 w-full h-full object-cover"
                       loading="lazy"

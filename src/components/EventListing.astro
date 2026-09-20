@@ -1,6 +1,5 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
+import { getImage } from 'astro:assets';
 
 const {
   eyebrow,
@@ -10,36 +9,50 @@ const {
   emptyMessage = 'More coming soon.',
 } = Astro.props;
 
-// Process items to support directory loading
-const items = rawItems.map((item) => {
+// Load all images in src/assets eagerly for directory processing
+const allImagesGlob = import.meta.glob('/src/assets/**/*.{jpeg,jpg,png,webp,gif}', { eager: true });
+
+// Process items to support directory loading (needs to be async due to getImage)
+const items = await Promise.all(rawItems.map(async (item) => {
   let images = item.images || [];
 
   if (item.directory && images.length === 0) {
-    const dirPath = path.join(process.cwd(), 'public', item.directory);
-    let files = [];
-    try {
-      if (fs.existsSync(dirPath)) {
-        files = fs.readdirSync(dirPath).filter(file => /\.(jpe?g|png|webp|gif)$/i.test(file));
-        // Sort alphabetically
-        files.sort((a, b) => a.localeCompare(b));
-      } else {
-        console.warn(`Directory not found: ${dirPath}`);
-      }
-    } catch (e) {
-      console.error(`Error reading directory ${dirPath}:`, e);
-    }
+    const dirPrefix = `/src/assets${item.directory}`;
     
-    // Create image objects
-    images = files.map(file => {
-      // Ensure directory starts with a slash and ends with a slash
-      const baseDir = item.directory.startsWith('/') ? item.directory : `/${item.directory}`;
-      const dirUrl = baseDir.endsWith('/') ? baseDir : `${baseDir}/`;
-      return { src: `${dirUrl}${file}` };
-    });
+    // Find all images matching the directory prefix
+    const matchingKeys = Object.keys(allImagesGlob)
+      .filter(key => key.startsWith(dirPrefix))
+      .sort((a, b) => a.localeCompare(b));
+    
+    if (matchingKeys.length === 0) {
+      console.warn(`No images found for directory: ${item.directory}`);
+    }
+      
+    // Optimize images for performance
+    images = await Promise.all(matchingKeys.map(async (key) => {
+      const originalImage = allImagesGlob[key].default;
+      
+      const optimizedMain = await getImage({
+        src: originalImage,
+        width: 1200,
+        format: 'webp'
+      });
+      
+      const optimizedThumb = await getImage({
+        src: originalImage,
+        width: 300,
+        format: 'webp'
+      });
+
+      return {
+        src: optimizedMain.src,
+        thumb: optimizedThumb.src,
+      };
+    }));
   }
   
   return { ...item, images };
-});
+}));
 ---
 
 <div class="min-h-screen bg-[#FAF6EE]">
@@ -158,7 +171,7 @@ const items = rawItems.map((item) => {
                             data-event-thumb={index}
                           >
                             <img
-                              src={image.src}
+                              src={image.thumb || image.src}
                               alt=""
                               class="h-full w-full object-cover"
                               loading="lazy"

@@ -179,15 +179,15 @@ const heroBgUrl = optimizedHeroBg.src;
 
             {
               carouselPhotos.map((photo, index) => (
-                <div class="flex-[0_0_100%] min-w-0 md:flex-[0_0_70%] lg:flex-[0_0_60%] px-2">
+                <div class="flex-shrink-0 px-2" style="width: auto;">
 
-                  <div class="relative aspect-[16/9] overflow-hidden rounded-xl bg-[#FFFDF9] border border-[#EADFC9] shadow-md">
+                  <div class="overflow-hidden rounded-xl bg-[#FFFDF9] border border-[#EADFC9] shadow-md" style="height: 400px;">
 
                     <Image
                       src={photo}
                       width={800}
                       alt={`YKB Gallery ${index + 1}`}
-                      class="absolute inset-0 w-full h-full object-contain"
+                      class="h-full w-auto object-cover"
                       loading="lazy"
                     />
 

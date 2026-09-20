@@ -1,11 +1,45 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
+
 const {
   eyebrow,
   title,
   intro,
-  items = [],
+  items: rawItems = [],
   emptyMessage = 'More coming soon.',
 } = Astro.props;
+
+// Process items to support directory loading
+const items = rawItems.map((item) => {
+  let images = item.images || [];
+
+  if (item.directory && images.length === 0) {
+    const dirPath = path.join(process.cwd(), 'public', item.directory);
+    let files = [];
+    try {
+      if (fs.existsSync(dirPath)) {
+        files = fs.readdirSync(dirPath).filter(file => /\.(jpe?g|png|webp|gif)$/i.test(file));
+        // Sort alphabetically
+        files.sort((a, b) => a.localeCompare(b));
+      } else {
+        console.warn(`Directory not found: ${dirPath}`);
+      }
+    } catch (e) {
+      console.error(`Error reading directory ${dirPath}:`, e);
+    }
+    
+    // Create image objects
+    images = files.map(file => {
+      // Ensure directory starts with a slash and ends with a slash
+      const baseDir = item.directory.startsWith('/') ? item.directory : `/${item.directory}`;
+      const dirUrl = baseDir.endsWith('/') ? baseDir : `${baseDir}/`;
+      return { src: `${dirUrl}${file}` };
+    });
+  }
+  
+  return { ...item, images };
+});
 ---
 
 <div class="min-h-screen bg-[#FAF6EE]">
@@ -47,8 +81,9 @@ const {
         <div class="space-y-24">
 
           {items.map((item) => {
-            const firstImage = item.images[0];
-            const hasMultipleImages = item.images.length > 1;
+            const images = item.images || [];
+            const firstImage = images[0];
+            const hasMultipleImages = images.length > 1;
 
             return (
               <article class="border-t border-[#EADFC9] pt-10 md:pt-12">
@@ -59,7 +94,7 @@ const {
                   <div
                     class="space-y-4"
                     data-event-carousel
-                    data-images={JSON.stringify(item.images)}
+                    data-images={JSON.stringify(images)}
                   >
 
                     {firstImage ? (
@@ -88,7 +123,7 @@ const {
                               class="text-xs font-semibold tabular-nums"
                               data-event-counter
                             >
-                              1 / {item.images.length}
+                              1 / {images.length}
                             </span>
 
                             <button
@@ -110,7 +145,7 @@ const {
                     {hasMultipleImages && (
                       <div class="flex gap-2 overflow-x-auto pb-1">
 
-                        {item.images.map((image, index) => (
+                        {images.map((image, index) => (
                           <button
                             type="button"
                             class:list={[

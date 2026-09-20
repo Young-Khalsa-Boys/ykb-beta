@@ -1,0 +1,6 @@
+---
+import { getImage } from 'astro:assets';
+const allImages = import.meta.glob('/src/assets/**/*.{jpeg,jpg,png,webp,gif}', { eager: true });
+console.log(Object.keys(allImages));
+---
+<div>Test</div>

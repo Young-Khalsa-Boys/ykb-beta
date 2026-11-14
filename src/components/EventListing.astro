@@ -75,6 +75,31 @@ const items = await Promise.all(rawItems.map(async (item) => {
         </p>
       </div>
 
+      <!-- CHAPTER FILTER PILLS -->
+      <div class="mt-8 flex flex-wrap gap-2.5" data-chapter-filter-group>
+        <button
+          type="button"
+          data-filter="all"
+          class="chapter-filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 border bg-[#2B2317] text-white border-[#2B2317] shadow-sm"
+        >
+          All Chapters
+        </button>
+        <button
+          type="button"
+          data-filter="young-khalsa-boys"
+          class="chapter-filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 border bg-white/90 text-slate-700 border-[#EADFC9] hover:border-[var(--color-ykb-blue)] hover:text-[var(--color-ykb-blue)] shadow-sm"
+        >
+          Young Khalsa Boys
+        </button>
+        <button
+          type="button"
+          data-filter="ykb-south"
+          class="chapter-filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 border bg-white/90 text-slate-700 border-[#EADFC9] hover:border-[var(--color-ykb-orange)] hover:text-[var(--color-ykb-orange)] shadow-sm"
+        >
+          YKB South
+        </button>
+      </div>
+
     </div>
   </section>
 
@@ -91,15 +116,21 @@ const items = await Promise.all(rawItems.map(async (item) => {
     ) : (
       <section class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16 md:py-20">
 
-        <div class="space-y-24">
+        <div class="space-y-24" id="event-list-container">
 
           {items.map((item) => {
             const images = item.images || [];
             const firstImage = images[0];
             const hasMultipleImages = images.length > 1;
+            const chapter = item.chapter || 'Young Khalsa Boys';
+            const chapterSlug = chapter.toLowerCase().includes('south') ? 'ykb-south' : 'young-khalsa-boys';
 
             return (
-              <article class="border-t border-[#EADFC9] pt-10 md:pt-12">
+              <article
+                class="border-t border-[#EADFC9] pt-10 md:pt-12 transition-opacity duration-200"
+                data-event-item
+                data-chapter={chapterSlug}
+              >
 
                 <div class="grid lg:grid-cols-[1.35fr_0.65fr] gap-10 lg:gap-16 items-start">
 
@@ -188,9 +219,21 @@ const items = await Promise.all(rawItems.map(async (item) => {
                   <!-- INFORMATION -->
                   <div class="lg:pt-1 min-w-0">
 
-                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-ykb-orange)] mb-5">
-                      {item.category}
-                    </p>
+                    <!-- Chapter & Category Badges -->
+                    <div class="flex flex-wrap items-center gap-2.5 mb-3">
+                      <span class:list={[
+                        'inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider',
+                        chapterSlug === 'ykb-south'
+                          ? 'bg-orange-100 text-[var(--color-ykb-orange)]'
+                          : 'bg-blue-100 text-[var(--color-ykb-blue)]'
+                      ]}>
+                        {chapter}
+                      </span>
+
+                      <span class="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">
+                        • {item.category}
+                      </span>
+                    </div>
 
                     <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#2B2317] leading-tight">
                       {item.name}
@@ -218,26 +261,29 @@ const items = await Promise.all(rawItems.map(async (item) => {
                         </dd>
                       </div>
 
+                      {item.impact && (
+                        <div>
+                          <dt class="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">
+                            Impact
+                          </dt>
+                          <dd class="mt-1 text-sm font-semibold text-[#2B2317]">
+                            {item.impact}
+                          </dd>
+                        </div>
+                      )}
+
+                      {item.summary && (
+                        <div>
+                          <dt class="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">
+                            Summary
+                          </dt>
+                          <dd class="mt-1 text-sm text-slate-600 leading-6">
+                            {item.summary}
+                          </dd>
+                        </div>
+                      )}
+
                     </dl>
-
-
-                    <!-- IMPACT -->
-                    <div class="mt-9 border-l-2 border-[var(--color-ykb-orange)] pl-5">
-
-                      <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">
-                        Impact
-                      </p>
-
-                      <p class="mt-2 text-lg font-serif font-bold leading-7 text-[#2B2317]">
-                        {item.impact}
-                      </p>
-
-                    </div>
-
-
-                    <p class="mt-9 text-base text-slate-600 leading-7">
-                      {item.summary}
-                    </p>
 
                   </div>
 
@@ -249,23 +295,64 @@ const items = await Promise.all(rawItems.map(async (item) => {
 
         </div>
 
+        <div id="no-matching-events" class="hidden border-y border-[#EADFC9] py-16 text-center">
+          <p class="text-lg font-serif text-slate-500">
+            No events found for this chapter yet. More coming soon!
+          </p>
+        </div>
+
       </section>
     )
   }
 
 </div>
 
-
 <script>
-  document.querySelectorAll('[data-event-carousel]').forEach((carousel) => {
-    const images = JSON.parse(
-      carousel.getAttribute('data-images') || '[]'
-    );
+  // Chapter Filter Functionality
+  const filterButtons = document.querySelectorAll('.chapter-filter-btn');
+  const eventItems = document.querySelectorAll('[data-event-item]');
+  const noMatchNotice = document.getElementById('no-matching-events');
 
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const selected = btn.getAttribute('data-filter');
+
+      // Update button styling
+      filterButtons.forEach((b) => {
+        const isCurrent = b === btn;
+        b.classList.toggle('bg-[#2B2317]', isCurrent);
+        b.classList.toggle('text-white', isCurrent);
+        b.classList.toggle('border-[#2B2317]', isCurrent);
+        b.classList.toggle('bg-white/90', !isCurrent);
+        b.classList.toggle('text-slate-700', !isCurrent);
+        b.classList.toggle('border-[#EADFC9]', !isCurrent);
+      });
+
+      let visibleCount = 0;
+      eventItems.forEach((item) => {
+        const itemChapter = item.getAttribute('data-chapter');
+        const matches = selected === 'all' || itemChapter === selected;
+        if (matches) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      if (noMatchNotice) {
+        noMatchNotice.classList.toggle('hidden', visibleCount > 0);
+      }
+    });
+  });
+
+  // Photo Carousel Functionality
+  document.querySelectorAll('[data-event-carousel]').forEach((carousel) => {
+    const rawImages = carousel.getAttribute('data-images');
+    const images = rawImages ? JSON.parse(rawImages) : [];
     const activeImage = carousel.querySelector('[data-event-active-image]');
     const counter = carousel.querySelector('[data-event-counter]');
-    const thumbs = [...carousel.querySelectorAll('[data-event-thumb]')];
-
+    const thumbs = carousel.querySelectorAll('[data-event-thumb]');
     let activeIndex = 0;
 
     if (!activeImage || images.length < 2) {

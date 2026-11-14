@@ -1,28 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import type { ImageMetadata } from 'astro';
+
+const profileImagesGlob = import.meta.glob<{ default: ImageMetadata }>('/src/assets/profilePictures/**/*.{jpeg,jpg,png,webp,gif}', { eager: true });
+
+const getProfileImage = (filename: string | null) => {
+  if (!filename) return null;
+  const key = `/src/assets/profilePictures/${filename}`;
+  return profileImagesGlob[key]?.default?.src || null;
+};
 
 const leadership = [
   {
     name: 'Shahan Arora',
     role: 'Founder & Assistant Treasurer',
-    image: 'src/assets/profilePictures/YKB_Shahan.jpg',
+    image: getProfileImage('YKB_Shahan.jpg'),
     bio: 'Shahan is the founder of Young Khalsa Boys and has been serving the community since YKB\'s founding. He is passionate about leadership, mentorship, and creating opportunities for young boys to grow through seva.',
   },
   {
     name: 'Kabir Sekhon',
     role: 'Director of Technology',
-    image: 'src/assets/profilePictures/YKB_Kabir.jpg',
+    image: getProfileImage('YKB_Kabir.jpg'),
     bio: 'Kabir is the Director of Technology for Young Khalsa Boys and is responsible for managing the organization\'s digital presence and technological infrastructure.',
   },
 ];
 
-const members = [
-  // Add members here:
-  // {
-  //   name: 'Member Name',
-  //   role: 'YKB Member',
-  //   image: 'src/assets/profilePictures/name.jpg',
-  // },
+const ykbMembers = [
+  { name: 'Suvir Sekhon', image: getProfileImage('YKB_Suvir.jpg') },
+  { name: 'Ajeet Singh', image: getProfileImage('YKB_Ajeet.jpg') },
+  { name: 'Zoravar Malik', image: getProfileImage('YKB_Zorawar.jpg') },
+  { name: 'Jeevat Sethi', image: getProfileImage('YKB_Jeevat.jpg') },
+  { name: 'Aaryav Saluja', image: getProfileImage('YKB_Aaryav.jpg') },
+  { name: 'Subhaig Singh', image: getProfileImage('YKB_Subhaig.jpg') },
+  { name: 'Tegh Garcha', image: getProfileImage('YKB_Tegh.jpg') },
+  { name: 'Jodh Saluja', image: getProfileImage('YKB_Jodh.jpg') },
+  { name: 'Naveen Malik', image: getProfileImage('YKB_Naveen.jpg') },
+  { name: 'Karanbir Singh', image: null },
+];
+
+const ykbSouthMembers = [
+  { name: 'Jugaad Singh Sodhi', image: getProfileImage('SOUTH_Jugaad.jpg') },
+  { name: 'VeerPartap Singh Chawla', image: getProfileImage('SOUTH_Veer.jpg') },
+  { name: 'Rajinder Pal Singh Chawla', image: getProfileImage('SOUTH_Rajinder.jpg') },
+  { name: 'Krishpreet Singh Basra', image: getProfileImage('SOUTH_Krishpreet.jpg') },
+  { name: 'Jaskeerat Singh Baweja', image: getProfileImage('SOUTH_Jaskeerat.jpg') },
+  { name: 'Arjan Santokh Singh Arora', image: getProfileImage('SOUTH_Arjun.jpg') },
+  { name: 'Sahib Singh Varaich', image: getProfileImage('SOUTH_Sahib.jpg') },
+  { name: 'Damanjit Singh', image: getProfileImage('SOUTH_Damanjit.jpg') },
 ];
 ---
 
@@ -52,33 +76,85 @@ const members = [
       </div>
     </section>
 
+    <!-- SECTION: YOUNG KHALSA BOYS -->
+    <div>
 
-    <!-- LEADERSHIP -->
-    <section class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16 md:py-20">
+      <!-- LEADERSHIP -->
+      <section class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16 md:py-20">
 
-      <div class="flex items-end justify-between border-b border-[#EADFC9] pb-5 mb-10">
-
-        <div>
-          <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-ykb-orange)] mb-2">
-            Leadership
-          </p>
-
-          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#2B2317]">
-            Leading through seva
-          </h2>
+        <div class="flex items-end justify-between border-b border-[#EADFC9] pb-5 mb-10">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-ykb-orange)] mb-2">
+              Leadership
+            </p>
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#2B2317]">
+              Leading through seva
+            </h2>
+          </div>
         </div>
 
-      </div>
+        {
+          leadership.length > 0 && (
+            <div class="grid md:grid-cols-2 gap-x-10 gap-y-12">
+              {leadership.map((member) => (
+                <article class="grid grid-cols-[120px_1fr] md:grid-cols-[160px_1fr] gap-6 items-start">
+                  <div class="aspect-square overflow-hidden bg-[#E7DED0] rounded-sm">
+                    {member.image ? (
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        class="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div class="w-full h-full flex items-center justify-center">
+                        <span class="text-3xl font-serif font-bold text-[#C5B9A6]">
+                          {member.name.charAt(0)}
+                        </span>
+                      </div>
+                    )}
+                  </div>
 
+                  <div class="pt-1">
+                    <p class="text-xs font-bold uppercase tracking-[0.14em] text-[var(--color-ykb-blue)]">
+                      {member.role}
+                    </p>
 
-      {
-        leadership.length > 0 ? (
-          <div class="grid md:grid-cols-2 gap-x-10 gap-y-12">
+                    <h3 class="mt-2 text-2xl font-serif font-bold text-[#2B2317]">
+                      {member.name}
+                    </h3>
 
-            {leadership.map((member) => (
-              <article class="grid grid-cols-[120px_1fr] md:grid-cols-[160px_1fr] gap-6 items-start">
+                    {member.bio && (
+                      <p class="mt-3 text-sm text-slate-600 leading-6">
+                        {member.bio}
+                      </p>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+          )
+        }
 
-                <div class="aspect-square overflow-hidden bg-[#E7DED0]">
+      </section>
+
+      <!-- YKB MEMBERS -->
+      <section class="bg-[#FFFDF9] border-y border-[#EADFC9]">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16 md:py-20">
+
+          <div class="mb-10">
+            <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-ykb-green)] mb-2">
+              NJ/NY Chapter
+            </p>
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#2B2317]">
+              Young Khalsa Boys NJ/NY Members
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-10">
+            {ykbMembers.map((member) => (
+              <article class="group">
+                <div class="aspect-square overflow-hidden bg-[#E7DED0] rounded-sm transition-transform duration-200 group-hover:scale-[1.02]">
                   {member.image ? (
                     <img
                       src={member.image}
@@ -95,209 +171,71 @@ const members = [
                   )}
                 </div>
 
-                <div class="pt-1">
-
-                  <p class="text-xs font-bold uppercase tracking-[0.14em] text-[var(--color-ykb-blue)]">
-                    {member.role}
-                  </p>
-
-                  <h3 class="mt-2 text-2xl font-serif font-bold text-[#2B2317]">
+                <div class="pt-3">
+                  <h3 class="font-serif font-bold text-lg text-[#2B2317]">
                     {member.name}
                   </h3>
-
-                  {member.bio && (
-                    <p class="mt-3 text-sm text-slate-600 leading-6">
-                      {member.bio}
-                    </p>
-                  )}
-
                 </div>
-
               </article>
             ))}
-
           </div>
-        ) : (
-          <div class="border-y border-[#EADFC9] py-14 text-center">
-            <p class="text-lg font-serif text-slate-500">
-              Leadership profiles will be introduced here as the organization grows.
-            </p>
-          </div>
-        )
-      }
-
-    </section>
-
-
-    <!-- MEMBERS -->
-    <section class="bg-[#FFFDF9] border-y border-[#EADFC9]">
-
-      <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16 md:py-20">
-
-        <div class="mb-10">
-
-          <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-ykb-green)] mb-2">
-            Members
-          </p>
-
-          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#2B2317]">
-            YKB Members
-          </h2>
 
         </div>
+      </section>
+
+    </div>
 
 
-        {
-          members.length > 0 ? (
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-10">
+    <!-- SECTION: YKB SOUTH -->
+    <div>
 
-              {members.map((member) => (
-                <article>
+      <section class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16 md:py-20">
 
-                  <div class="aspect-square overflow-hidden bg-[#E7DED0]">
-
-                    {member.image ? (
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        class="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div class="w-full h-full flex items-center justify-center">
-                        <span class="text-3xl font-serif font-bold text-[#C5B9A6]">
-                          {member.name.charAt(0)}
-                        </span>
-                      </div>
-                    )}
-
-                  </div>
-
-                  <div class="pt-3">
-
-                    <h3 class="font-serif font-bold text-lg text-[#2B2317]">
-                      {member.name}
-                    </h3>
-
-                    {member.role && (
-                      <p class="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
-                        {member.role}
-                      </p>
-                    )}
-
-                  </div>
-
-                </article>
-              ))}
-
-            </div>
-          ) : (
-            <div class="border-y border-[#EADFC9] py-14 max-w-3xl">
-
-              <p class="text-xl font-serif leading-8 text-[#2B2317]">
-                Our members are the heart of Young Khalsa Boys.
-              </p>
-
-              <p class="mt-3 text-slate-600 leading-7">
-                Member profiles will be introduced here as we continue
-                building our organization and growing our brotherhood.
-              </p>
-
-            </div>
-          )
-        }
-
-      </div>
-
-    </section>
-
-
-
-    <!--SOUTH MEMBERS -->
-    <section class="bg-[#FFFDF9]">
-
-      <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16 md:py-20">
-
-        <div class="mb-10">
-
-          <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-ykb-green)] mb-2">
-            Members
+        <div class="border-b border-[#EADFC9] pb-5 mb-10">
+          <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-ykb-orange)] mb-2">
+            South NJ Chapter
           </p>
-
           <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#2B2317]">
-            YKB South Members
+            Young Khalsa Boys South NJ Members
           </h2>
-
         </div>
 
-
-        {
-          members.length > 0 ? (
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-10">
-
-              {members.map((member) => (
-                <article>
-
-                  <div class="aspect-square overflow-hidden bg-[#E7DED0]">
-
-                    {member.image ? (
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        class="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div class="w-full h-full flex items-center justify-center">
-                        <span class="text-3xl font-serif font-bold text-[#C5B9A6]">
-                          {member.name.charAt(0)}
-                        </span>
-                      </div>
-                    )}
-
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-10">
+          {ykbSouthMembers.map((member) => (
+            <article class="group">
+              <div class="aspect-square overflow-hidden bg-[#E7DED0] rounded-sm transition-transform duration-200 group-hover:scale-[1.02]">
+                {member.image ? (
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-full h-full flex items-center justify-center">
+                    <span class="text-3xl font-serif font-bold text-[#C5B9A6]">
+                      {member.name.charAt(0)}
+                    </span>
                   </div>
+                )}
+              </div>
 
-                  <div class="pt-3">
+              <div class="pt-3">
+                <h3 class="font-serif font-bold text-lg text-[#2B2317]">
+                  {member.name}
+                </h3>
+              </div>
+            </article>
+          ))}
+        </div>
 
-                    <h3 class="font-serif font-bold text-lg text-[#2B2317]">
-                      {member.name}
-                    </h3>
+      </section>
 
-                    {member.role && (
-                      <p class="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
-                        {member.role}
-                      </p>
-                    )}
-
-                  </div>
-
-                </article>
-              ))}
-
-            </div>
-          ) : (
-            <div class="border-y border-[#EADFC9] py-14 max-w-3xl">
-
-              <p class="text-xl font-serif leading-8 text-[#2B2317]">
-                Our members are the heart of Young Khalsa Boys.
-              </p>
-
-              <p class="mt-3 text-slate-600 leading-7">
-                Member profiles will be introduced here as we continue
-                building our organization and growing our brotherhood.
-              </p>
-
-            </div>
-          )
-        }
-
-      </div>
-
-    </section>
+    </div>
 
 
     <!-- CLOSING -->
-    <section class="max-w-4xl mx-auto px-5 sm:px-8 py-20 md:py-24 text-center">
+    <section class="border-t border-[#EADFC9] max-w-4xl mx-auto px-5 sm:px-8 py-20 md:py-24 text-center">
 
       <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-ykb-orange)] mb-4">
         Brotherhood through seva

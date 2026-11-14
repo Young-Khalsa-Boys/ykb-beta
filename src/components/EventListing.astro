@@ -86,17 +86,17 @@ const items = await Promise.all(rawItems.map(async (item) => {
         </button>
         <button
           type="button"
-          data-filter="young-khalsa-boys"
+          data-filter="ykb-nj-ny"
           class="chapter-filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 border bg-white/90 text-slate-700 border-[#EADFC9] hover:border-[var(--color-ykb-blue)] hover:text-[var(--color-ykb-blue)] shadow-sm"
         >
-          Young Khalsa Boys
+          Young Khalsa Boys NJ/NY
         </button>
         <button
           type="button"
-          data-filter="ykb-south"
+          data-filter="ykb-south-nj"
           class="chapter-filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 border bg-white/90 text-slate-700 border-[#EADFC9] hover:border-[var(--color-ykb-orange)] hover:text-[var(--color-ykb-orange)] shadow-sm"
         >
-          YKB South
+          Young Khalsa Boys South NJ
         </button>
       </div>
 
@@ -122,8 +122,8 @@ const items = await Promise.all(rawItems.map(async (item) => {
             const images = item.images || [];
             const firstImage = images[0];
             const hasMultipleImages = images.length > 1;
-            const chapter = item.chapter || 'Young Khalsa Boys';
-            const chapterSlug = chapter.toLowerCase().includes('south') ? 'ykb-south' : 'young-khalsa-boys';
+            const chapter = item.chapter || 'Young Khalsa Boys NJ/NY';
+            const chapterSlug = chapter.toLowerCase().includes('south') ? 'ykb-south-nj' : 'ykb-nj-ny';
 
             return (
               <article
